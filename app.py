@@ -16,10 +16,6 @@ if "language" not in st.session_state:
 if "selected_tab" not in st.session_state:
     st.session_state["selected_tab"] = None
 
-# Initialize password protection state for analysis
-if "analysis_unlocked" not in st.session_state:
-    st.session_state["analyses_unlocked"] = False
-
 # Define a callback function to set session state when "Proceed" button is clicked
 def proceed(language):
     st.session_state["language_selected"] = True
@@ -85,15 +81,15 @@ else:
         module = importlib.import_module("02_experimental")
         module.run(selected_language)
 
-    elif selected_tab == tabs[3]:
-            module = importlib.import_module("03_analyses")
-            module.run(selected_language)
+    # elif selected_tab == tabs[3]:
+    #         module = importlib.import_module("03_analyses")
+    #         module.run(selected_language)
 
-    elif selected_tab == tabs[4]:
+    elif selected_tab == tabs[3]:
         module = importlib.import_module("04_extrapython")
         module.run(selected_language)
 
-    elif selected_tab == tabs[5]:
+    elif selected_tab == tabs[4]:
         module = importlib.import_module("05_class_toolkit")
         module.run(selected_language)
 
