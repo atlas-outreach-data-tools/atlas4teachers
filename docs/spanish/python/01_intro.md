@@ -453,5 +453,6 @@ En todas estas características, fuimos breves para poder pasar rápidamente a t
 Al usar Python, eres parte de una gran comunidad global. Esto significa que el internet está lleno de consejos sobre cómo escribir bien el código Python. Si describes tu problema a un motor de búsqueda, la mayoría de las veces obtendrá una solución de inmediato. ¡Aprovecha lo que otros Pythonistas saben sobre Python!
 > [!END]
 
-¡Buena suerte analizando los datos abiertos de ATLAS! Esperamos que esta introducción a la programación en Python le resulte útil.
+¡Buena suerte analizando los datos abiertos de ATLAS! Esperamos que esta introducción a la programación en Python le resulte útil. 
 
+Si quieres continuar aprendiendo como se usa Python en física experimental de partículas,te recomendamos revisar el tab de "Introducción a la histogramación" en esta misma página.

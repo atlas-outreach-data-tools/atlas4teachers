@@ -5,6 +5,17 @@ from utils import load_sidebar_tabs
 import json
 import os
 
+st.set_page_config(
+    page_title="ATLAS for Teachers",
+    page_icon="💥",
+    layout="centered",
+    initial_sidebar_state="expanded",
+    menu_items={
+        'Get Help': 'https://opendata.atlas.cern/contact-us',
+        'About': "# ATLAS Open Data in the Classroom"
+    }
+)
+
 # Initialize session state for language selection
 if "language_selected" not in st.session_state:
     st.session_state["language_selected"] = False

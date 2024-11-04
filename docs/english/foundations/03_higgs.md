@@ -6,6 +6,36 @@ To understand the Higgs boson, we first need to introduce the Higgs field. Imagi
 
 The Higgs boson is the particle associated to this field, a manifestation that confirms the field’s existence. It’s similar to a ripple in the water – just as a ripple indicates the presence of water, the Higgs boson reveals the Higgs field.
 
+## How the Higgs Boson is Produced
+At the LHC, Higgs bosons are produced in various ways, known as **production modes**. These modes depend on the particles involved in the initial interaction and are best understood through [Feynman diagrams](https://cds.cern.ch/record/2759490/files/Feynman%20Diagrams%20-%20ATLAS%20Cheat%20Sheet.pdf), which provide a visual representation of particle interactions:
+
+- **Gluon Fusion**: The most common production mode at the LHC, where two gluons (from protons in the collider) interact to produce a Higgs boson via a loop of heavy quarks, often the top quark (image 1). This process is highly probable because of the strong interaction between gluons and quarks.
+
+![Image 1: Production of the Higgs boson from gluon fusion.](images/ggH.png)
+
+- **Vector Boson Fusion (VBF)**: In this mode, two quarks each emit a W or Z boson, which interact to produce a Higgs boson (image 2). The quarks themselves are often scattered at high angles, leaving a distinctive signature of two “jets” in the detector.
+
+![Image 2: Production of the Higgs boson from vector boson fusion.](images/VBFH.png)
+
+- **Associated Production (or Higgs-Strahlung)**: Here, a Higgs boson is produced along with either a W or Z boson (image 3).
+
+![Image 3: Production of the Higgs boson from associated production.](images/WH.png)
+
+- **Top-Quark Fusion**: A rarer mode where a Higgs boson is produced in association with a top quark pair (image 4). This process helps study the interaction between the Higgs and the heaviest known particle, the top quark.
+
+![Image 4: Production of the Higgs boson from top quark fusion.](images/ttbarfusion.png)
+
+## How the Higgs Boson Decays
+Once produced, the Higgs boson decays almost immediately. The specific way it decays—called the decay channel—depends on its mass and interaction probabilities with other particles:
+
+- **Higgs to two photons (H→γγ)**: The Higgs boson decays into two photons, which are easier to detect because they produce a clear signal in the detector. This channel helped confirm the Higgs discovery because it has a distinct signature and relatively low background noise.
+
+- **Higgs to two Z bosons (H→ZZ)**: The Higgs boson decays into a pair of Z bosons, each of which can decay further into pairs of leptons, such as electrons or muons. This decay chain allows the reconstruction of the Higgs boson’s presence by observing the four-lepton final state. This is what we are doing in the workshop!
+
+![Image 5: Decay of the Higgs boson into two Z bosons.](images/HZZ_feynman.png)
+
+- **Higgs to two W bosons (H→WW)**: In this decay mode, the Higgs boson decays into a pair of W bosons, which further decay into leptons and neutrinos.
+
 ## Why the Higgs Boson Matters
 The Higgs boson is important for a few reasons:
 - **Completing the Standard Model**: The Higgs boson was the last missing particle of the Standard Model, providing the final confirmation that our theoretical framework is correct.

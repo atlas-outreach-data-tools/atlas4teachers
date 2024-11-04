@@ -538,3 +538,5 @@ plt.###
 ---
 
 **¡Felicitaciones!** Has trabajado con datos reales de ATLAS como un verdadero físico de partículas.
+
+Si quieres seguir aprendiendo a usar Python para analizar datos públicos de ATLAS, puedes consultar los [notebooks en el sitio web de ATLAS Open Data](https://opendata.atlas.cern/docs/category/analysis-notebooks).

@@ -1,7 +1,7 @@
 # El experimento ATLAS
 El detector ATLAS del CERN está diseñado para observar los productos de las colisiones de partículas en el Gran Colisionador de Hadrones (LHC). Con 25 metros de alto y 46 metros de largo, está formado por varias capas, donde cada una cumple una función específica: detectar partículas producidas durante colisiones de alta energía. Las capas están dispuestas como los anillos de una cebolla, cada una de las cuales captura distintos tipos de partículas y mide propiedades únicas.
 
-![Imagen 1: El detector ATLAS y sus partes.](images/ATLAS_detector.png)
+![Imagen 1: El detector ATLAS y sus partes.](images/ATLAS_detector_spanish.png)
 
 ## Los subdetectores
 A continuación se muestra una ilustración de la estructura en capas del detector ATLAS y cómo las distintas partículas interactuan a medida que pasan por cada sección:

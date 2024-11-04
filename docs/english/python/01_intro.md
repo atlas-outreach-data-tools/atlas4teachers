@@ -455,3 +455,4 @@ In using Python, you are a part of a large global community.  This means that th
 
 Good luck analysing ATLAS Open Data! We hope that this introduction to coding in Python will serve you well.
 
+If you want to continue learning how Python is used in experimental particle physics, we recommend checking out the "Introduction to Histogramming" tab on this page.

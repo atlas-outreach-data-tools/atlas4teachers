@@ -540,3 +540,6 @@ plt.###
 ---
 
 **Congratulations!** You've worked with actual ATLAS data like a real particle physicist!
+
+If you want to continue learning how to use Python to analyse the public data from ATLAS, you can check out the [notebooks in the ATLAS Open Data website](https://opendata.atlas.cern/docs/category/analysis-notebooks).
+
