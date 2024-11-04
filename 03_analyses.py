@@ -15,25 +15,6 @@ import time
                 
 def run(selected_language):
     # Initialize everything needed
-    # Define paths and samples
-    path = "https://atlas-opendata.web.cern.ch/13TeV/2J2LMET30/"
-    sample_data = ['data15_periodD.root',
-                'data15_periodE.root',
-                'data15_periodF.root',
-                'data15_periodG.root',
-                'data15_periodH.root',
-                'data15_periodJ.root',
-                'data16_PeriodI.root',
-                'data16_periodA.root',
-                'data16_periodB.root',
-                'data16_periodC.root',
-                'data16_periodD.root',
-                'data16_periodE.root',
-                'data16_periodF.root',
-                'data16_periodG.root',
-                'data16_periodK.root',
-                'data16_periodL.root' ] 
-
     # Initialize flags to keep track of each step
     if 'data_loaded' not in st.session_state:
         st.session_state.data_loaded = False
@@ -94,7 +75,7 @@ def run(selected_language):
     # Introduction
     st.markdown("""
     With this interactive app you can discover the Z and the Higgs bosons. 
-    By understanding and applying appropiate cuts to the data you will discover the particles yourself!
+    By understanding and making a selection of events you will discover the particles yourself!
     """)
 
     st.markdown("## How much data do you want to use?")
@@ -144,7 +125,7 @@ The more data you analyze, the better chance you have of spotting rare events li
         with st.expander("🔍 Quiz", expanded=st.session_state['expand_all']):
             st.markdown("##### ⁉️ Understanding Luminosity")
             st.markdown(f"""
-            You selected a luminosity of **{lumi} fb⁻¹**. But what does luminosity actually represent in a particle physics experiment?
+            You selected a luminosity of **{lumi} fb⁻¹**. But what does integrated luminosity actually represent in a particle physics experiment?
             """)
 
             possible = ['The amount of time the detector is active',
@@ -160,7 +141,7 @@ The more data you analyze, the better chance you have of spotting rare events li
 
         # Using a selectbox to let users choose between amounts of leptons
         st.markdown("## Number of leptons in the final state")
-        st.markdown("In particle physics, the final state refers to the particles that emerge from a collision, which are detected and analyzed. By identifying the final state, we can infer what happened during the collision. One important aspect is the number of leptons in the final state, as different processes produce different numbers of leptons.")
+        st.markdown("In particle colliders, when a particle is produced, it can decay immediately to other particles, which are detected and analyzed. By identifying all the particles in the final state, we can infer what particles were initially created during the collision. One example is the number of leptons in the final state, as different processes produce different numbers of leptons.")
         st.markdown("Below is a Feynman diagram showing a typical process that results in a final state with two leptons:")
         # Diagram for Z decay
         image_zdecay = f"images/Z_decay_{theme['base']}.png"
@@ -201,7 +182,7 @@ The more data you analyze, the better chance you have of spotting rare events li
         # Get the appropriate plot file based on the theme
         st.image(f"images/lepton_plot_{theme['base']}.png")
 
-        st.markdown("Study the diagrams and the data, and select how many leptons you expect to observe in your final state depending on the analysis you are doing.")
+        st.markdown("Study the diagrams and the data, and select how many leptons you expect to observe in your final state depending on the analysis you are doing – finding the Z boson or the Higgs boson..")
         
         st.warning("""
         You are about to select the number of leptons you want in your data. However, it's important to note that we’ve added additional criteria to ensure the quality of these leptons:
@@ -242,23 +223,23 @@ The more data you analyze, the better chance you have of spotting rare events li
 
         # Number of leptons button
         # We define a variable to avoid the page breaking when clicked more than once
-        if st.button("Apply number-of-leptons cut"):
+        if st.button("Apply number-of-leptons selection"):
             if st.session_state.nlepton_cut_applied:
-                st.toast("You already applied a cut. To reset the analysis go to the end of the page.", icon='❌')
+                st.toast("You already applied a selection. To reset the analysis go to the end of the page.", icon='❌')
             elif n_leptons != '--':
                 random_sleep = random.randint(1, round(lumi/3))
                 # Display a spinner with the loading message
-                with st.spinner("Making cut... Please wait."):
+                with st.spinner("Making selection... Please wait."):
                     # Simulate a time-consuming process with a random sleep
                     time.sleep(random_sleep)
                 st.session_state.nlepton_cut_applied = True
-                st.toast("Cut applied successfully.", icon='✂️')
+                st.toast("Selection applied successfully.", icon='✂️')
             else:
                 st.error("Please select a valid number of leptons.")
 
     # Step 2: Dynamically generate selection for lepton flavors
     if st.session_state.nlepton_cut_applied:
-        st.info(f"Events after the cut: {analyses[f'{lumi}'][f'{n_leptons}leptons']['nEvents']}")
+        st.info(f"Events after the selection: {analyses[f'{lumi}'][f'{n_leptons}leptons']['nEvents']}")
 
         with st.expander("🔍 Quiz", expanded=st.session_state['expand_all']):
             st.markdown("##### ⁉️ Lepton Final State")
@@ -279,12 +260,12 @@ The more data you analyze, the better chance you have of spotting rare events li
 
         st.markdown("## Let's ensure conservation")
         st.markdown("In particle interactions, certain properties are always conserved, such as *charge* and lepton *flavor*. Understanding these conservation laws helps narrow down the possibilities for what particles are involved in the final state.")
-        st.markdown("In your analysis, you can look at the *flavor* of the leptons (whether they are electrons or muons) and their *charge* (positive or negative). The plot below shows the distribution of lepton flavors, with one bar for positively charged and one for negatively charged leptons. This helps identify whether the final state obeys conservation laws.")
+        st.markdown("In your analysis, you can look at the flavor of the leptons (whether they are electrons or muons) and their charge (positive or negative). The particles with opposite charge are called antiparticles, a positive electron is called positron and a positive muon is called anti-muon. The plot below shows the distribution of lepton flavors, with one bar for positively charged and one for negatively charged leptons. This helps identify whether the final state obeys conservation laws.")
 
         # Display the pre-generated plot based on the theme
         st.image(f"images/lepton_barplot_{theme['base']}.png")
         
-        st.markdown("With this in mind, let's select our next cuts. If unsure, scroll up to the Feynmann diagrams above. You may find helpful information there.")
+        st.markdown("With this in mind, let's apply our next selection. If unsure, scroll up to the Feynmann diagrams above. You may find helpful information there.")
 
         flavor_options = ["--", 'Same', 'Different']
         flavor = st.selectbox(f'Should the lepton pairs have the same or different flavor?', flavor_options, key=f"flavor_selection")
@@ -302,26 +283,26 @@ The more data you analyze, the better chance you have of spotting rare events li
                     """)
             
         # Apply lepton type cut based on flavor selection
-        if st.button("Apply lepton type cut"):
+        if st.button("Apply lepton type selection"):
             if st.session_state.leptontype_cut_applied:
-                st.toast("You already applied a cut. To reset the analysis go to the end of the page.", icon='❌')
+                st.toast("You already applied a selection. To reset the analysis go to the end of the page.", icon='❌')
             elif flavor != '--':    
                 # Display a spinner with the loading message
                 random_sleep = random.randint(1, round(lumi/3))
-                with st.spinner("Making cut... Please wait."):
+                with st.spinner("Making selection... Please wait."):
                     # Simulate a time-consuming process with a random sleep
                     time.sleep(random_sleep)
 
                 # Display the cut result
                 st.session_state.leptontype_cut_applied = True
-                st.toast("Cut applied successfully.", icon='✂️')
+                st.toast("Selection applied successfully.", icon='✂️')
 
             else:
                 st.error("Please select an option for the flavor of leptons.")
 
     # Step 3: Dynamically generate selection for lepton charges
     if st.session_state.leptontype_cut_applied:
-        st.info(f"Events after the cut: {analyses[f'{lumi}'][f'{n_leptons}leptons'][f'flavor{flavor}']['nEvents']}")
+        st.info(f"Events after the selection: {analyses[f'{lumi}'][f'{n_leptons}leptons'][f'flavor{flavor}']['nEvents']}")
 
         # Offer options for charge pairing: Same charge or Opposite charge
         charge_pair_options = ["--",'Same', 'Opposite']
@@ -338,24 +319,24 @@ The more data you analyze, the better chance you have of spotting rare events li
                     """)
 
             # Apply lepton type cut based on flavor selection
-        if st.button("Apply lepton charge cut"):
+        if st.button("Apply lepton charge selection"):
             if st.session_state.leptoncharge_cut_applied:
-                st.toast("You already applied a cut. To reset the analysis go to the end of the page.", icon='❌')
+                st.toast("You already applied a selection. To reset the analysis go to the end of the page.", icon='❌')
             elif charge != '--':
                 # Display a spinner with the loading message
                 random_sleep = random.randint(1, round(lumi/3))
-                with st.spinner("Making cut... Please wait."):
+                with st.spinner("Making selection... Please wait."):
                     # Simulate a time-consuming process with a random sleep
                     time.sleep(random_sleep)
                     st.session_state.leptoncharge_cut_applied = True
 
                     # Provide feedback to the user
-                    st.toast("Cut applied successfully.", icon='✂️')
+                    st.toast("Selection applied successfully.", icon='✂️')
             else:
                 st.error("Please select an option for the lepton charge.")
 
         if st.session_state.leptoncharge_cut_applied:
-            st.info(f"Events after the cut: {analyses[f'{lumi}'][f'{n_leptons}leptons'][f'flavor{flavor}'][f'charge{charge}']['nEvents']}")
+            st.info(f"Events after the selection: {analyses[f'{lumi}'][f'{n_leptons}leptons'][f'flavor{flavor}'][f'charge{charge}']['nEvents']}")
 
         
             with st.expander("🔍 Quiz", expanded=st.session_state['expand_all']):
@@ -364,7 +345,7 @@ The more data you analyze, the better chance you have of spotting rare events li
                 You selected lepton pairs with **{charge} charge**. Why is the charge of lepton pairs important in particle physics?
                 """)
                 possible_charge = [
-                    'Charge conservation is a fundamental principle, and decays usually result in particles with opposite charges',
+                    'Charge conservation is a fundamental principle, and decay products should conserve the charge',
                     'Leptons with the same charge are more common in particle decays like the Z boson decay',
                     'Charge doesn\'t play a significant role in particle interactions',
                     'Same-charge lepton pairs indicate a high-energy collision'

@@ -4,6 +4,7 @@ import importlib
 from utils import load_sidebar_tabs
 import json
 import os
+from st_social_media_links import SocialMediaIcons
 
 st.set_page_config(
     page_title="ATLAS for Teachers",
@@ -48,6 +49,21 @@ if not st.session_state["language_selected"]:
     
     # Proceed button with a callback function
     st.button("Proceed", on_click=proceed, args=(language,))
+
+    st.markdown("---")
+    social_media_links = [
+    "https://x.com/ATLASexperiment",
+    "https://www.facebook.com/ATLASexperiment",
+    "https://www.instagram.com/atlasexperiment/",
+    "https://www.tiktok.com/@atlasexperiment",
+    "https://www.linkedin.com/company/atlas-collaboration",
+    "https://www.youtube.com/c/ATLASExperiment",
+    "https://www.threads.net/@atlasexperiment",
+    ]
+
+    social_media_icons = SocialMediaIcons(social_media_links)
+    st.write(f'Follow ATLAS in social media.')
+    social_media_icons.render()
 
 # # Check if English is selected
 # elif st.session_state["language"] == "English":
@@ -104,8 +120,9 @@ else:
         module = importlib.import_module("05_class_toolkit")
         module.run(selected_language)
 
+
     # Use the bottom container to place the language section at the bottom
     with sidebar_bottom:
-        st.sidebar.markdown("<br><br><br><br><br>", unsafe_allow_html=True)  # Add some space
+        st.sidebar.markdown("<br><br><br><br><br>", unsafe_allow_html=True)  
         st.sidebar.text(f"Language: {selected_language}")
         st.sidebar.button("Change Language", on_click=reset_language)
