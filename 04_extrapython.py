@@ -1,6 +1,8 @@
 import streamlit as st
 import os
 import json
+import threading
+from rootbrowser import root_browser
 from utils import load_markdown_file_with_images_and_code, get_first_level_headers, load_markdown_preview
 
 def run(selected_language):
@@ -26,7 +28,7 @@ def run(selected_language):
 
     # Create paths and titles for each section
     general_info = '00_before_class.md'
-    tabs_path = ['01_intro.md', '02_histograms.md']
+    tabs_path = ['01_intro.md', '02_histograms.md', '03_histograms.md']
     tab_titles = get_first_level_headers(selected_language, folder, tabs_path)
 
     load_markdown_file_with_images_and_code(general_info, folder, {}, selected_language)
@@ -35,7 +37,7 @@ def run(selected_language):
     tabs = st.tabs(tab_titles)
     # Get the start/done buttons
     start, done = extras["start_done"][0], extras["start_done"][1]
-
+    
     # Tab 1: Introduction
     with tabs[0]:
         # Load preview for intro
@@ -60,18 +62,30 @@ def run(selected_language):
     with tabs[1]:
         # Load preview for histograms
         histograms_preview = load_markdown_preview(tabs_path[1], folder, selected_language, lines=3)
-
+        
+        histograms_preview2 = load_markdown_preview(tabs_path[2], folder, selected_language, lines=3)
+        
+        
         if not st.session_state["expanded_histograms"]:
             # Show preview
             preview_lines = histograms_preview.splitlines()
+            preview_lines2 = histograms_preview2.splitlines()
+            
             st.markdown(f"#{preview_lines[0]}")  # First line as title with larger font
             st.write("\n".join(preview_lines[1:]))  # Remaining lines as preview text
+            
+            st.write("\n".join(preview_lines2[0:]))  # Remaining lines as preview text
+            
             if st.button(start, key="histograms_read"):
                 st.session_state["expanded_histograms"] = True
                 st.rerun()  # Refresh the app to display the full content
         else:
             # Show full content
             load_markdown_file_with_images_and_code(tabs_path[1], folder, global_namespace, selected_language)
+            
+            root_browser() # Call the root browser function
+            
+            load_markdown_file_with_images_and_code(tabs_path[2], folder, global_namespace, selected_language)
             if st.button(done, key="histograms_done"):
                 st.session_state["expanded_histograms"] = False
                 st.rerun()  # Refresh the app to show the preview again
