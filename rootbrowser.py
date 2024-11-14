@@ -1,6 +1,8 @@
 import streamlit as st
 import uproot
 import streamlit_antd_components as sac
+import matplotlib.pyplot as plt
+import pandas as pd
 
 def make_tree(directory, path=""):
     """
@@ -44,11 +46,49 @@ def create_tree_items(data):
 
 
 def display_tree(tree):
-    # Use sac.tree to display the tree structure
+    
+    if not tree:
+        return
+        
+    # Create a list of TreeItems from the tree structure
     tree_items = create_tree_items(tree)
-    sac.tree(items=tree_items, label='Tree Structure', open_all=True, checkbox=True)
+    # Display the tree structure
+    print(tree_items)
+    return sac.tree(items=tree_items, label='Tree Structure', open_all=True, checkbox=True)
 
+def print_types(directory, filter):
+    
+    if not filter:
+        return
+    
+    for key, obj in directory.items():
+        if isinstance(obj, uproot.behaviors.TTree.TTree):
+            branches = obj.keys()
+            for branch in branches:
+                if branch == filter:
+                    ## print the types
+                    st.write(obj[branch].typename)
+                    plot_branch_histogram(obj, branch)
+                    
+        elif isinstance(obj, uproot.reading.ReadOnlyDirectory):
+            print_types(directory, filter)
+    
+    return
 
+def plot_branch_histogram(tree, branch):
+
+    try:
+        data = tree[branch].array(library="np")
+        fig, ax = plt.subplots()
+        ax.hist(data, bins=30, alpha=0.7, color="skyblue")
+        ax.set_title(f"Histogram of {branch}")
+        ax.set_xlabel("Value")
+        ax.set_ylabel("Frequency")
+        st.pyplot(fig)
+    except:
+        st.write("plot histogram not supported")
+    
+    
 def root_browser():
     """
     Streamlit interface to upload a ROOT file and display its tree structure. Use drop down box to select a file with also pre-loaded ones.
@@ -61,11 +101,12 @@ def root_browser():
             'https://atlas-opendata.web.cern.ch/Legacy8TeV/MC/mc_147770.Zee.root', uploaded]
     
     root_file = st.selectbox("Select a ROOT file", list)
-    button = st.button("Display tree")
     
-    if button:
-        if root_file:
-            tree = make_tree(root_file)
-            display_tree(tree)
-        else:
-            st.write("No ROOT file selected")
+    with st.expander(f"🌳 Tree", expanded=False):
+        tree = make_tree(root_file)
+        selected = display_tree(tree)
+        if selected is not None:
+            for i in selected:
+                print_types(uproot.open(root_file), i[2:])
+                
+                
