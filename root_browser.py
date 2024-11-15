@@ -19,6 +19,7 @@ class RootFileBrowser:
         Parameters:
             descriptions (dict, optional): Descriptions for ROOT branches. Defaults to an empty dictionary.
         """
+        
         self.descriptions = descriptions or {}
 
     def create_tree_items(self, directory):
@@ -36,15 +37,15 @@ class RootFileBrowser:
             if isinstance(obj, uproot.behaviors.TTree.TTree):
                 branch_items = [
                     sac.TreeItem(
-                        label=f"{branch}",
+                        label=f"🍁 {branch}",
                         description=self.descriptions.get(branch, f"Type: {obj[branch].typename} \nNo description available")
                     )
                     for branch in obj.keys()
                 ]
-                items.append(sac.TreeItem(label=f"📂 {key}", children=branch_items))
+                items.append(sac.TreeItem(label=f"🌳 {key}", children=branch_items))
             elif isinstance(obj, uproot.reading.ReadOnlyDirectory):
                 child_items = self.create_tree_items(directory[key])
-                items.append(sac.TreeItem(label=f"📁 {key}", children=child_items))
+                items.append(sac.TreeItem(label=f"🌳 {key}", children=child_items))
         return items
 
     def display_tree_structure(self, directory):
@@ -58,7 +59,7 @@ class RootFileBrowser:
             list: The names of the selected branches.
         """
         tree_items = self.create_tree_items(directory)
-        selected = sac.tree(items=tree_items, label="Tree Structure", open_all=True, checkbox=True, size="xs")
+        selected = sac.tree(items=tree_items, label="Tree Structure", open_all=True, checkbox=True, size="md")
         return selected
 
     def plot_branch_histogram(self, tree, branch):
@@ -102,7 +103,7 @@ class RootFileBrowser:
             try:
                 directory = uproot.open(selected_file)
 
-                with st.expander("🌳 Tree Structure", expanded=True):
+                with st.expander("Open to see Tree Structure", expanded=False):
                     selected = self.display_tree_structure(directory)
 
                 if selected:
