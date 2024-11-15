@@ -162,7 +162,6 @@ def run(selected_language):
             
             st.markdown(f"#{preview_lines[0]}")  # First line as title with larger font
             st.write("\n".join(preview_lines[1:]))  # Remaining lines as preview text
-            browser.browse_root_file() # Call the root browser function
             st.write("\n".join(preview_lines2[0:]))  # Remaining lines as preview text
             
             if st.button(start, key="histograms_read"):
