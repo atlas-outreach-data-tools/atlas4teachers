@@ -92,7 +92,6 @@ class RootFileBrowser:
         root_files = [
             'https://atlas-opendata.web.cern.ch/atlas-opendata/samples/2020/1largeRjet1lep/MC/mc_361106.Zee.1largeRjet1lep.root',
             'https://atlas-opendata.web.cern.ch/atlas-opendata/samples/2020/1largeRjet1lep/Data/data_B.1largeRjet1lep.root',
-            'https://atlas-opendata.web.cern.ch/Legacy8TeV/MC/mc_147770.Zee.root',
         ]
         if uploaded_file:
             root_files.append(uploaded_file)
