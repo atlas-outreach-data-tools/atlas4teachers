@@ -171,7 +171,7 @@ def run(selected_language):
             # Show full content
             load_markdown_file_with_images_and_code(tabs_path[1], folder, global_namespace, selected_language)
             
-            browser.browse_root_file() # Call the root browser function
+            browser.browse_root_file(selected_language) # Call the root browser function
             
             load_markdown_file_with_images_and_code(tabs_path[2], folder, global_namespace, selected_language)
             if st.button(done, key="histograms_done"):
