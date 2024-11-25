@@ -85,18 +85,28 @@ class RootFileBrowser:
         """
         Streamlit interface for browsing a ROOT file, selecting branches, and viewing histograms.
         """
-        st.title("ROOT File Browser")
+        #st.title("ROOT File Browser")
 
         # File upload option
-        uploaded_file = st.file_uploader("Upload a ROOT file", type=["root"])
+        #uploaded_file = st.file_uploader("Upload a ROOT file", type=["root"])
         root_files = [
             'https://atlas-opendata.web.cern.ch/atlas-opendata/samples/2020/1largeRjet1lep/MC/mc_361106.Zee.1largeRjet1lep.root',
             'https://atlas-opendata.web.cern.ch/atlas-opendata/samples/2020/1largeRjet1lep/Data/data_B.1largeRjet1lep.root',
         ]
-        if uploaded_file:
-            root_files.append(uploaded_file)
-
-        selected_file = st.selectbox("Select a ROOT file", root_files)
+        #if uploaded_file:
+        #    root_files.append(uploaded_file)
+        
+        # Extract filenames from URLs
+        file_labels = [url.split('/')[-2] + '/' + url.split('/')[-1] for url in root_files]  # e.g., "MC/mc_361106.Zee.1largeRjet1lep.root"
+    
+        # Create a mapping between labels and full URLs
+        file_map = dict(zip(file_labels, root_files))
+    
+        # Select a file using its label
+        selected_label = st.selectbox("Select a ROOT file", file_labels)
+    
+        # Map the label back to the full URL
+        selected_file = file_map[selected_label]
 
         if selected_file:
             try:
