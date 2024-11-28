@@ -46,7 +46,7 @@ def reset_language():
 # Main page (landing page with language selection)
 if not st.session_state["language_selected"]:
     st.title("Welcome to the ATLAS Open Data Teachers Workshop")
-    st.image('https://cds.cern.ch/record/1459481/files/run203602_evt82614360_ATLANTISBase.png?subformat=icon-1440', width=630)
+    st.image('https://atlas.cern/sites/default/files/2024-07/ATLAS-open-data.jpg', width=630)
     st.write("Please select your language to continue:")
     
     # Dropdown for language selection
@@ -55,7 +55,6 @@ if not st.session_state["language_selected"]:
     # Proceed button with a callback function
     st.button("Proceed", on_click=proceed, args=(language,))
 
-    st.markdown("---")
     social_media_links = [
     "https://x.com/ATLASexperiment",
     "https://www.facebook.com/ATLASexperiment",
@@ -67,7 +66,6 @@ if not st.session_state["language_selected"]:
     ]
 
     social_media_icons = SocialMediaIcons(social_media_links)
-    st.write(f'Follow ATLAS in social media.')
     social_media_icons.render()
 
 # # Check if English is selected
@@ -114,10 +112,31 @@ else:
         module.run(selected_language)
 
     elif selected_tab == tabs[3]:
-        # Dynamically import 03_analysis.py from the language-specific folder
-        module_path = f"docs.{selected_language.lower()}.analyses.03_analyses"
-        module = importlib.import_module(module_path)
-        module.run(selected_language)
+        # Check if the tutorial has been completed
+        if "tutorial_completed" not in st.session_state:
+            st.session_state["tutorial_completed"] = False
+
+        if not st.session_state["tutorial_completed"]:
+            # Load the tutorial module
+            if st.button("Already completed the tutorial? Go to the analysis"):
+                st.session_state["tutorial_completed"] = True
+                st.rerun()
+            module = importlib.import_module("03_analyses_tutorial")
+            module.run(selected_language)
+
+            # Add a "Finish Tutorial" button
+            if st.button("Finish Tutorial", type='primary'):
+                st.session_state["tutorial_completed"] = True
+                st.rerun()
+        else:
+            # Add a "Finish Tutorial" button
+            if st.button("Back to Tutorial"):
+                st.session_state["tutorial_completed"] = False
+                st.rerun()
+            # Load the actual analyses module after completing the tutorial
+            module = importlib.import_module("03_analyses")
+            module.run(selected_language)
+        
 
     elif selected_tab == tabs[4]:
         module = importlib.import_module("04_extrapython")

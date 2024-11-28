@@ -48,13 +48,13 @@ def run(selected_language):
             preview_lines = intro_preview.splitlines()
             st.markdown(f"#{preview_lines[0]}")  # First line as title with larger font
             st.write("\n".join(preview_lines[1:]))  # Remaining lines as preview text
-            if st.button(start, key="intro_read"):
+            if st.button(start, key="intro_read", type='primary'):
                 st.session_state["expanded_intro"] = True
                 st.rerun()  # Refresh the app to display the full content
         else:
             # Show full content
             load_markdown_file_with_images(tabs_path[0], folder, selected_language)
-            if st.button(done, key="intro_done"):
+            if st.button(done, key="intro_done", type='primary'):
                 st.session_state["expanded_intro"] = False
                 st.rerun()  # Refresh the app to show the preview again
 
@@ -66,13 +66,13 @@ def run(selected_language):
             preview_lines = standard_model_preview.splitlines()
             st.markdown(f"#{preview_lines[0]}")  # First line as title with larger font
             st.write("\n".join(preview_lines[1:]))  # Remaining lines as preview text
-            if st.button(start, key="standard_model_read"):
+            if st.button(start, key="standard_model_read", type='primary'):
                 st.session_state["expanded_standard_model"] = True
                 st.rerun()  # Refresh the app to display the full content
         else:
             # Show full content
             load_markdown_file_with_images(tabs_path[1], folder, selected_language)
-            if st.button(done, key="standard_model_done"):
+            if st.button(done, key="standard_model_done", type='primary'):
                 st.session_state["expanded_standard_model"] = False
                 st.rerun()  # Refresh the app to show the preview again
 
@@ -84,13 +84,13 @@ def run(selected_language):
             preview_lines = higgs_preview.splitlines()
             st.markdown(f"#{preview_lines[0]}")  # First line as title with larger font
             st.write("\n".join(preview_lines[1:]))  # Remaining lines as preview text
-            if st.button(start, key="higgs_read"):
+            if st.button(start, key="higgs_read", type='primary'):
                 st.session_state["expanded_higgs"] = True
                 st.rerun()  # Refresh the app to display the full content
         else:
             # Show full content
             load_markdown_file_with_images(tabs_path[2], folder, selected_language)
-            if st.button(done, key="higgs_done"):
+            if st.button(done, key="higgs_done", type='primary'):
                 st.session_state["expanded_higgs"] = False
                 st.rerun()  # Refresh the app to show the preview again
 
@@ -103,13 +103,13 @@ def run(selected_language):
             preview_lines = uknown_preview.splitlines()
             st.markdown(f"#{preview_lines[0]}")  # First line as title with larger font
             st.write("\n".join(preview_lines[1:]))  # Remaining lines as preview text
-            if st.button(start, key="unknown_read"):
+            if st.button(start, key="unknown_read", type='primary'):
                 st.session_state["expanded_unknown"] = True
                 st.rerun()  # Refresh the app to display the full content
         else:
             # Show full content
             load_markdown_file_with_images(tabs_path[3], folder, selected_language)
-            if st.button(done, key="unknown_done"):
+            if st.button(done, key="unknown_done", type='primary'):
                 st.session_state["expanded_unknown"] = False
                 st.rerun()  # Refresh the app to show the preview again
 

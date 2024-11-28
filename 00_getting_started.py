@@ -1,5 +1,5 @@
 import streamlit as st
-from utils import load_markdown_file_with_images, get_first_level_headers, load_markdown_preview
+from utils import load_markdown_file_with_images_and_code
 
 def run(selected_language):
     folder = "getting_started"
@@ -13,6 +13,6 @@ def run(selected_language):
     tabs_path = ['00_intro.md']
 
     # Show full content
-    load_markdown_file_with_images(tabs_path[0], folder, selected_language)
+    load_markdown_file_with_images_and_code(tabs_path[0], folder, {}, selected_language)
 
     

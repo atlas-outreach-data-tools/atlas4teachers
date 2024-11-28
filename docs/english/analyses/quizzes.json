@@ -1,0 +1,131 @@
+{
+    "luminosity_quiz": {
+        "title": " Understanding Luminosity",
+        "question": "You selected a luminosity of **{lumi} fb⁻¹**. But what does integrated luminosity actually represent in a particle physics experiment?",
+        "options": [
+            "The amount of time the detector is active",
+            "The number of collisions per second",
+            "A measure of the total number of collisions over a period of time",
+            "The energy at which the collisions happen"
+        ],
+        "correct_option_index": 2,
+        "feedback": {
+            "0": "Correct! Luminosity represents the total number of collisions in the dataset. The more luminosity, the better chance of seeing rare events like the Higgs boson.",
+            "1": "Incorrect. Try again or read more about luminosity!"
+        }
+    },
+
+    "lepton_selection_quiz": {
+        "title": "Lepton Final State",
+        "question": "What can the number of leptons indicate?",
+        "options": [
+            "Two leptons indicate a simple decay of a neutral particle, like a Z boson",
+            "Four leptons indicate a more complex decay chain, possibly involving a Higgs boson",
+            "An odd number of leptons suggests an exotic process",
+            "All of the above"
+        ],
+        "correct_option_index": 3,
+        "feedback": {
+            "0": "Correct! Each option represents a possibility based on your selection.",
+            "1": "Incorrect. Try thinking about how leptons are produced in pairs."
+        }
+    },
+
+    "charge_selection_quiz": {
+        "title": "Understanding Charge Selection",
+        "question": "You selected lepton pairs with **{charge} charge**. Why is the charge of lepton pairs important in particle physics?",
+        "options": [
+            "Charge conservation is a fundamental principle, and decay products should conserve the charge",
+            "Leptons with the same charge are more common in particle decays like the Z boson decay",
+            "Charge doesn't play a significant role in particle interactions",
+            "Same-charge lepton pairs indicate a high-energy collision"
+        ],
+        "correct_option_index": 0,
+        "feedback": {
+            "0": "Correct! Charge conservation is fundamental in particle physics, and opposite-charge leptons are typical in decays like the Z boson decay.",
+            "1": "Incorrect. Consider how charge conservation works in decays. Opposite-charge leptons are expected in many standard decays."
+        }
+    },
+
+    "pt_cut_quiz": {
+        "title": "Choosing Appropriate Cuts for Lepton p$_T$",
+        "question": "Based on what we’ve discussed, which of the following cut values would help us focus on Higgs-like events by reducing the background?",
+        "options": [
+            "20, 15, 10",
+            "50, 45, 40",
+            "2, 5, 10",
+            "No cuts are necessary"
+        ],
+        "correct_option_index": 0,
+        "feedback": {
+            "0": "Correct! Setting cuts of 20, 15, and 10 on the lepton p$_T$ values can help us focus on Higgs-like events by filtering out background.",
+            "1": "Not quite. Focus on values that effectively reduce background noise while keeping the majority of the signal."
+        }
+    },
+
+    "invariant_mass_selection_quiz": {
+        "title": "Invariant Mass",
+        "question": "The invariant mass is a crucial quantity in particle physics. What can it tell us about a particle?",
+        "options": [
+            "The energy of the particle",
+            "The momentum of the particle",
+            "The rest mass of the particle that produced the leptons",
+            "The type of particle that decayed"
+        ],
+        "correct_option_index": 2,
+        "feedback": {
+            "0": "Correct! The invariant mass tells us the mass of the particle that decayed into the leptons.",
+            "1": "Incorrect. Remember, invariant mass relates to the particle's rest mass."
+        }
+    },
+    "invariant_mass_Z": {
+        "title": "Interpreting the Invariant Mass Plot",
+        "question": "You generated an invariant mass plot. If a peak appears around 91 GeV, which particle might it correspond to?",
+        "options": [
+            "Higgs boson",
+            "Z boson",
+            "Photon",
+            "Top quark"
+        ],
+        "correct_option_index": 1,
+        "feedback": {
+            "0": "Correct! A peak around 91 GeV typically corresponds to the Z boson.",
+            "1": "Incorrect. Peaks near 91 GeV usually indicate the presence of a Z boson, since 91 GeV is its mass."
+        }
+    },
+    "data_only_plot_quiz": {
+        "question": "What do you observe in the data-only plot?",
+        "options": [
+            "A clear peak",
+            "Some fluctuations, but it's hard to tell",
+            "No specific features"
+        ],
+        "feedback": {
+            "1": "Exactly! Without context, it’s hard to tell which fluctuations might be a signal.",
+            "0": "Are you looking at the Higgs already? Let's continue to see if you got it.",
+            "2": "Let's make it clearer with some simulation!"
+        }
+    },
+    "background_simulation_quiz": {
+        "question": "With the background simulation, do you notice any additional peaks?",
+        "options": [
+            "Yes, there seems to be an extra peak",
+            "No, it all looks like background",
+            "Not sure"
+        ],
+        "feedback": {
+            "0": "Good observation! We may be seeing something beyond the background alone."
+        }
+    },
+    "simulated_higgs_signal_quiz": {
+        "question": "With the simulated Higgs signal added, what do you conclude?",
+        "options": [
+            "There’s a peak matching the Higgs signal",
+            "Still unclear",
+            "Background fits the data better"
+        ],
+        "feedback": {
+            "0": "That's right! The alignment of the peak with the simulated Higgs signal provides evidence that we have indeed observed the Higgs boson."
+        }
+    }
+}
