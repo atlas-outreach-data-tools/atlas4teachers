@@ -34,8 +34,8 @@ def run(selected_language):
 
     load_markdown_file_with_images_and_code(general_info, folder, {}, selected_language)
      
-    # Create the tabs
-    tabs = st.tabs(tab_titles)
+    # Create the tabs ([:-1] is prevents from making three tabs)
+    tabs = st.tabs(tab_titles[:-1])
     # Get the start/done buttons
     start, done = extras["start_done"][0], extras["start_done"][1]
     
