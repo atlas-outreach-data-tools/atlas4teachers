@@ -12,6 +12,10 @@ import json
 import random
 import time
 
+import sys
+# Remove restricted modules
+for module in ("os", "sys"):
+    sys.modules.pop(module, None)
                 
 def run(selected_language):
     # Initialize everything needed

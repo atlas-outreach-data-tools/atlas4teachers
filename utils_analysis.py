@@ -7,6 +7,11 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.ticker import AutoMinorLocator
 
+import sys
+# Remove restricted modules
+for module in ("os", "sys"):
+    sys.modules.pop(module, None)
+
 def get_darklight_plot(plot,theme):
     if theme and theme.get("base") == "dark":
         return f"images/lepton_{plot}_dark.png"
