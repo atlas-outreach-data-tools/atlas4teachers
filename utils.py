@@ -154,7 +154,7 @@ def run_code_editor(default_code, global_namespace, height=[2,30], key=None):
     response_dict = code_editor(
         default_code,
         lang="python",
-        props={"style": {"pointerEvents": "none"}},
+        # props={"style": {"pointerEvents": "none"}},
         height=height,
         theme="monokai",
         buttons=custom_buttons,

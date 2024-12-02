@@ -11,12 +11,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 # I think this is the standard port for Streamlit
 EXPOSE 8501
 
-# RUN adduser --disabled-password --gecos "" streamlituser \
-#     && chown -R streamlituser:streamlituser /app
-# USER streamlituser
-
-
-
+RUN adduser --disabled-password --gecos "" streamlituser \
+    && chown -R streamlituser:streamlituser /app
+USER streamlituser
 
 # Run the app
 CMD ["streamlit", "run", "app.py", "--server.port=8501", "--server.address=0.0.0.0"]
