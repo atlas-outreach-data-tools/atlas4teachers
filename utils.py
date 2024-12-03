@@ -165,7 +165,10 @@ def run_code_editor(default_code, global_namespace, height=[2, 30], key=None):
     if response_dict['type'] == "submit" and len(response_dict['text']) != 0:
         code = response_dict['text']
 
-        # Custom print function to capture output
+        # Buffer to capture `print` output
+        buffer = io.StringIO()
+
+        # Custom print function to redirect output to the buffer
         def safe_print(*args, **kwargs):
             print(*args, file=buffer, **kwargs)
 
@@ -175,27 +178,20 @@ def run_code_editor(default_code, global_namespace, height=[2, 30], key=None):
             "__name__": "__main__",  # Name scope
             "st": st,  # Allow access to Streamlit
             "plt": plt,  # Allow access to Matplotlib
-            "print": safe_print  # Allow safe print
+            "print": safe_print,  # Add custom safe print function
         }
 
-        # Capture standard output
-        old_stdout = sys.stdout
-        sys.stdout = buffer = io.StringIO()
-
+        # Execute the code
         try:
             # Compile the code using RestrictedPython
             compiled_code = compile_restricted(code, "<submitted_code>", "exec")
-            # Execute the code in a restricted environment
             exec(compiled_code, restricted_globals, global_namespace)
         except IndentationError as e:
             st.error(f"Indentation Error: {e}")
         except Exception as e:
             st.error(f"Error: {e}")
-        finally:
-            # Restore standard output
-            sys.stdout = old_stdout
 
-        # Capture and display output
+        # Display output captured in buffer
         output = buffer.getvalue()
         if output:
             st.code(output, language="python")
