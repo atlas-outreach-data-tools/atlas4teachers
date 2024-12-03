@@ -165,12 +165,17 @@ def run_code_editor(default_code, global_namespace, height=[2, 30], key=None):
     if response_dict['type'] == "submit" and len(response_dict['text']) != 0:
         code = response_dict['text']
 
+        # Custom print function to capture output
+        def safe_print(*args, **kwargs):
+            print(*args, file=buffer, **kwargs)
+
         # Set up a restricted execution environment
         restricted_globals = {
             **safe_builtins,  # Only safe built-ins
             "__name__": "__main__",  # Name scope
             "st": st,  # Allow access to Streamlit
             "plt": plt,  # Allow access to Matplotlib
+            "print": safe_print  # Allow safe print
         }
 
         # Capture standard output
