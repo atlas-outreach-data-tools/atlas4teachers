@@ -7,9 +7,6 @@ import io
 import sys
 import json
 
-# Remove restricted modules
-for module in ("os", "sys"):
-    sys.modules.pop(module, None)
 
 def generate_header_id(header_text):
     """Generate a valid HTML id from the header text by removing special characters."""

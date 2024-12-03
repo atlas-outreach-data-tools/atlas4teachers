@@ -13,10 +13,6 @@ import argparse
 import sys
 import logging
 
-# Remove restricted modules
-for module in ("os", "sys"):
-    sys.modules.pop(module, None)
-
 # Global variables
 # Units
 MeV = 0.001

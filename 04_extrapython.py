@@ -3,11 +3,6 @@ import os
 import json
 from utils import load_markdown_file_with_images_and_code, get_first_level_headers, load_markdown_preview
 
-import sys
-# Remove restricted modules
-for module in ("os", "sys"):
-    sys.modules.pop(module, None)
-
 def run(selected_language):
     # Shared global namespace across all cells
     global_namespace = {}
