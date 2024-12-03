@@ -1,4 +1,6 @@
 import matplotlib.pyplot as plt
+from RestrictedPython import compile_restricted
+from RestrictedPython.Guards import safe_builtins
 import os
 import re
 import streamlit as st
@@ -144,9 +146,9 @@ def get_first_level_headers(language, folder, filenames):
             print(f"File not found: {base_path}")
     return headers
 
-def run_code_editor(default_code, global_namespace, height=[2,30], key=None):
+def run_code_editor(default_code, global_namespace, height=[2, 30], key=None):
     """
-    Run the code editor in Streamlit with a shared global namespace.
+    Run the code editor in Streamlit with a shared global namespace using RestrictedPython for safety.
     """
     with open('custom/buttons_code_cells.json') as json_button_file:
         custom_buttons = json.load(json_button_file)
@@ -154,31 +156,46 @@ def run_code_editor(default_code, global_namespace, height=[2,30], key=None):
     response_dict = code_editor(
         default_code,
         lang="python",
-        # props={"style": {"pointerEvents": "none"}},
         height=height,
         theme="monokai",
         buttons=custom_buttons,
-        key=key  # Add a unique key here
+        key=key
     )
 
     if response_dict['type'] == "submit" and len(response_dict['text']) != 0:
         code = response_dict['text']
+
+        # Set up a restricted execution environment
+        restricted_globals = {
+            **safe_builtins,  # Only safe built-ins
+            "__name__": "__main__",  # Name scope
+            "st": st,  # Allow access to Streamlit
+            "plt": plt,  # Allow access to Matplotlib
+        }
+
+        # Capture standard output
         old_stdout = sys.stdout
         sys.stdout = buffer = io.StringIO()
 
         try:
-            exec(code, global_namespace)
+            # Compile the code using RestrictedPython
+            compiled_code = compile_restricted(code, "<submitted_code>", "exec")
+            # Execute the code in a restricted environment
+            exec(compiled_code, restricted_globals, global_namespace)
         except IndentationError as e:
             st.error(f"Indentation Error: {e}")
         except Exception as e:
             st.error(f"Error: {e}")
+        finally:
+            # Restore standard output
+            sys.stdout = old_stdout
 
+        # Capture and display output
         output = buffer.getvalue()
         if output:
             st.code(output, language="python")
 
-        sys.stdout = old_stdout
-
+        # Handle plots if any
         if plt.get_fignums():
             st.pyplot(plt.gcf())
             plt.close('all')
