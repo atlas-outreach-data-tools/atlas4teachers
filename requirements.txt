@@ -79,3 +79,4 @@ vector==1.4.1
 xxhash==3.5.0
 yarl==1.13.1
 zipp==3.20.2
+streamlit-antd-components==0.3.2
