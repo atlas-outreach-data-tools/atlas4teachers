@@ -50,7 +50,7 @@ if not st.session_state["language_selected"]:
     st.write("Please select your language to continue:")
     
     # Dropdown for language selection
-    language = st.selectbox("Select Language", ["English", "Spanish"])
+    language = st.selectbox("Select Language", ["English", "Spanish", "Italian"])
     
     # Proceed button with a callback function
     st.button("Proceed", on_click=proceed, args=(language,))

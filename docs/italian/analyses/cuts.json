@@ -1,0 +1,46 @@
+{
+  "lumi" : {
+        "selectbox_label": "Select luminosity (fb$^{-1}$):",
+        "selectbox_options": [12, 24, 36],
+        "default": 0,
+        "apply_button": "Open the data"
+  },
+  "n_leptons" : {
+    "selectbox_label": "How many leptons do you expect in the final state?",
+    "selectbox_options": ["--", 2, 3, 4],
+    "messages": {
+      "2": "You’ve chosen a final state with **2 leptons**.\nThis suggests you're interested in a process where a single intermediate particle decays into a pair of leptons.\nLepton pairs are common in many particle interactions, especially when considering neutral intermediates.",
+      "4": "You’re looking at **4 leptons** in the final state.\nThis often indicates a chain of decays, where multiple intermediate particles decay into pairs of leptons.\nSuch scenarios are interesting for studying complex interactions.",
+      "3": "Having an odd number of leptons is unusual in simple decay processes, as leptons are usually produced in pairs due to conservation laws.\nHowever, this might suggest you're exploring more exotic decay modes. Are you looking for dark matter?"
+    },
+    "apply_button": "Apply number-of-leptons selection",
+    "error": "Please select a valid number of leptons."
+  },
+  "flavor": {
+    "selectbox_label": "Should the lepton pairs have the same or different flavor?",
+    "selectbox_options": ["--", "Same", "Different"],
+    "messages": {
+      "same": "Selecting leptons of the same flavor means you're considering a scenario where the properties of the leptons are identical, such as two electrons or two muons. Same-flavor pairs often arise in decays where the particle interaction respects flavor conservation.",
+      "different": "Choosing leptons of different flavors indicates you're examining a situation where the leptons are not identical, such as one electron and one muon. While this might occur in some processes, it’s less common in simple decays due to flavor conservation laws."
+    },
+    "apply_button": "Apply lepton type selection",
+    "error": "Please select an option for the flavor of leptons."
+  },
+  "charge": {
+    "selectbox_label": "Should the lepton pairs have the same or opposite charge?",
+    "selectbox_options": ["--", "Same", "Opposite"],
+    "messages": {
+      "same": "Lepton pairs with the same charge are unusual because charge is typically conserved in interactions. However, some more exotic processes or misidentifications could result in same-charge pairs.",
+      "opposite": "You've chosen opposite-charge leptons. Many interactions conserve charge, so it's typical to see a lepton and its antiparticle produced together, resulting in opposite charges."
+    },
+    "apply_button": "Apply lepton charge selection",
+    "error": "Please select an option for the lepton charge."
+  },
+  "mass": { 
+    "apply_button": "Get invariant mass"
+  }, 
+  "lepton_pt": {
+    "selectbox_label": "Now, let's make the cut:",
+    "apply_button": "Cut on leptons p$_T$"
+  }
+}

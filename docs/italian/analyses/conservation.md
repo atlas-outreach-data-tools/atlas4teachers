@@ -1,0 +1,14 @@
+## Let's ensure conservation
+In particle interactions, [certain properties are always conserved](https://cds.cern.ch/record/2759491/files/Conservation%20Laws%20-%20ATLAS%20Physics%20Cheat%20Sheet.pdf). Two important examples are charge conservation and lepton flavor conservation. These conservation laws are essential for understanding which particles are involved in a process and verifying that the final state follows the rules of the Standard Model.
+
+To better understand this, let’s revisit the Feynman diagrams above. In the Z boson decay diagram, we see that the Z boson decays into two leptons: one with a positive charge (a particle) and one with a negative charge (an antiparticle). This ensures that the total charge before and after the decay, or the vertex, remains neutral, conserving charge. Similarly, the Higgs boson decay diagram shows that the Higgs first decays into two neutral Z bosons. Each Z boson then decays into a pair of leptons, where both charge and lepton flavor are conserved.
+
+Lepton flavor refers to the type of lepton, such as an electron or a muon. In particle decays, leptons are always produced in pairs with their corresponding antiparticles because this ensures that certain conservation laws, like charge conservation and lepton flavor conservation, are obeyed. For example, an electron is always paired with a positron, and a muon is always paired with an anti-muon. These rules help us predict which particles will appear in the final state of a decay.
+
+In your analysis, you can look at the flavor or type of leptons (whether they are electrons or muons) and their charge (positive or negative). In each decay, the lepton and its antiparticle always belong to the same flavor. The plot below shows the distribution of lepton flavors, with one bar for positively charged and one for negatively charged leptons. This helps identify whether the final state obeys conservation laws.
+
+The plot below illustrates these principles. It is a bar plot where the x-axis shows the two possible lepton flavors: electrons (e) and muons (μ). Each flavor is further divided into positively charged leptons (e.g., positrons or anti-muons) and negatively charged leptons (e.g., electrons or muons). The height of each bar represents the number of leptons detected in your analysis for each category. This visualization helps confirm that the particle interactions you are studying follow conservation laws.
+
+![Lepton flavor and charge distribution, showing electrons and muons split by positive and negative charges.](images/lepton_barplot_{theme}_{lumi}.png)
+        
+With this understanding of conservation laws, let’s apply our next selection. If you are unsure, revisit the Feynman diagrams above—they provide helpful clues about charge and lepton flavor in the final state.

@@ -1,0 +1,16 @@
+{
+    "load_data": "Loading data... Please wait.",
+    "load_data_success": "Data loaded successfully!",
+    "initial_nevents": "Initial number of events",
+    "choose_answer": "Choose your answer",
+    "already_cutted": "You already applied a selection. To reset the analysis go to the end of the page.",
+    "making_selection": "Making selection... Please wait.",
+    "selection_success": "Selection applied successfully.",
+    "after_nevents": "Events after the selection",
+    "restart": "If you want to reaply cuts click the `Restart Analysis` button.",
+    "restart_button": "Restart Analysis",
+    "restarted": "The analysis has been restarted.",
+    "start": "Start!",
+    "hint": "Want a hint? Click here and check the image above",
+    "hide_hint": "Hide Hint"
+}
