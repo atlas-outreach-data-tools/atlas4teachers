@@ -13,7 +13,7 @@ Guarda il video per imparare a iniziare con i dati aperti di ATLAS! Sono disponi
   
 #### Trova il bosone di Higgs con il tuo mouse
   
-Esplora iistogrammi, applica criteri di selezione e identifica i decadimenti del bosone di Higgs in un formato interattivo.
+Esplora gli istogrammi, applica criteri di selezione e identifica i decadimenti del bosone di Higgs in un formato interattivo.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/X1PyNTUwffI?si=9VwPVsdFFNBUYpYb" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
   

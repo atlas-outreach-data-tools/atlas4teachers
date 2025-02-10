@@ -8,4 +8,4 @@
 
 - **Eccedenza**: Quando gli scienziati vedono più istanze di un grafico dei dati di quanto si aspettassero, chiamano queste eccedenze. Gli scienziati misurano la significatività statistica (vedi "Standard Deviazione") delle eccedenze per determinare quanta fiducia abbiano che siano il risultato di nuove fisica e non solo fluttuazioni casuali.
 
-- **Standard Deviazione**: Una deviazione standard è una misura di quanto insolito un insieme di dati sia se una ipotesi è vera. I fisici esprimono le deviazioni standard in unità chiamate sigma, σ. Il numero più alto di sigma, più inconsistente i dati sono con l'ipotesi.
+- **Deviazione standard**: Una deviazione standard è una misura di quanto insolito un insieme di dati sia se una ipotesi è vera. I fisici esprimono le deviazioni standard in unità chiamate sigma, σ. Il numero più alto di sigma, più inconsistente i dati sono con l'ipotesi.

@@ -7,7 +7,7 @@ Per comprendere il bosone di Higgs, dobbiamo prima introdurre il campo di Higgs.
 Il bosone di Higgs è la particella associata a questo campo, una manifestazione che conferma l'esistenza del campo. È simile a un'increspatura nell'acqua - proprio come un'increspatura indica la presenza di acqua, il bosone di Higgs rivela il campo di Higgs.
 
 ## Come si Produce il Bosone di Higgs
-All'LHC, i bosoni di Higgs vengono prodotti in diversi modi, noti come **modi di produzione**. Questi modi dipendono dalle particelle coinvolte nell'interazione iniziale e si comprendono meglio attraverso i [diagrammi di Feynman](https://cds.cern.ch/record/2759490/files/Feynman%20Diagrams%20-%20ATLAS%20Cheat%20Sheet.pdf), che forniscono una rappresentazione visiva delle interazioni tra particelle:
+All'LHC, i bosoni di Higgs vengono prodotti in diversi canali, noti come **processi di produzione**. Questi modi dipendono dalle particelle coinvolte nell'interazione iniziale e si comprendono meglio attraverso i [diagrammi di Feynman](https://cds.cern.ch/record/2759490/files/Feynman%20Diagrams%20-%20ATLAS%20Cheat%20Sheet.pdf), che forniscono una rappresentazione visiva delle interazioni tra particelle:
 
 - **Fusione di Gluoni**: Il modo di produzione più comune all'LHC, dove due gluoni (provenienti dai protoni nel collisore) interagiscono per produrre un bosone di Higgs tramite un loop di quark pesanti, spesso il quark top (immagine 1). Questo processo è altamente probabile a causa della forte interazione tra gluoni e quark.
 
@@ -21,12 +21,12 @@ All'LHC, i bosoni di Higgs vengono prodotti in diversi modi, noti come **modi di
 
 ![Immagine 3: Produzione del bosone di Higgs dalla produzione associata.](images/WH.png)
 
-- **Fusione di Quark Top**: Un modo più raro in cui un bosone di Higgs è prodotto in associazione con una coppia di quark top (immagine 4). Questo processo aiuta a studiare l'interazione tra l'Higgs e la particella più pesante conosciuta, il quark top.
+- **Fusione di Quark Top**: Un modo più raro in cui un bosone di Higgs è prodotto in associazione con una coppia di quark top (immagine 4). Questo processo aiuta a studiare l'interazione tra l'Higgs e la particella elementare più pesante conosciuta fino ad ora, il quark top.
 
 ![Immagine 4: Produzione del bosone di Higgs dalla fusione di quark top.](images/ttbarfusion.png)
 
 ## Come il Bosone di Higgs Decade
-Una volta prodotto, il bosone di Higgs decade quasi immediatamente. Il modo specifico in cui decade—chiamato canale di decadimento—dipende dalla sua massa e dalle probabilità di interazione con altre particelle:
+Una volta prodotto, il bosone di Higgs decade quasi immediatamente. Il modo specifico in cui decade — chiamato canale di decadimento — dipende dalla sua massa e dalle probabilità di interazione con altre particelle:
 
 - **Higgs in due fotoni (H→γγ)**: Il bosone di Higgs decade in due fotoni, che sono più facili da rilevare perché producono un segnale chiaro nel rivelatore. Questo canale ha aiutato a confermare la scoperta dell'Higgs perché ha una firma distintiva e un rumore di fondo relativamente basso.
 
@@ -39,7 +39,7 @@ Una volta prodotto, il bosone di Higgs decade quasi immediatamente. Il modo spec
 ## Perché il Bosone di Higgs è Importante
 Il bosone di Higgs è importante per diversi motivi:
 - **Completamento del Modello Standard**: Il bosone di Higgs era l'ultima particella mancante del Modello Standard, fornendo la conferma finale che il nostro quadro teorico è corretto.
-- **Spiegazione della Massa**: Senza il campo di Higgs, particelle come quark ed elettroni sarebbero prive di massa, e gli atomi come li conosciamo non potrebbero formarsi. Questo campo spiega perché la materia abbia sostanza e perché il nostro universo abbia struttura.
+- **Spiegazione della Massa**: Senza il campo di Higgs tutte le particelle, tra cui quark ed elettroni, sarebbero prive di massa, e gli atomi come li conosciamo non potrebbero formarsi.
 - **Aprirà le Porte oltre il Modello Standard**: Sebbene completi il Modello Standard, il bosone di Higgs solleva anche domande sulla fisica al di là di questa teoria, come la natura della materia oscura, che non sembra interagire con il campo di Higgs, e l'origine dell'energia oscura.
 
 ## Rilevazione del Bosone di Higgs

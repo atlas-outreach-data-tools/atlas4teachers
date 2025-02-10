@@ -1,4 +1,4 @@
-Inizialmente, questo dataset contiene {data} righe o eventi
+Questo dataset contiene {data} righe o eventi
 
 ##### Contenuto delle Colonne
 Ecco cosa significano le colonne nel dataset:

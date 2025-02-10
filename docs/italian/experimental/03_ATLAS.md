@@ -23,9 +23,9 @@ Lo strato più esterno del rivelatore ATLAS, lo [Spettrometro di Muoni](http://c
 ## Segnali di Particelle in ATLAS
 Diverse particelle lasciano segnali distinti mentre si muovono attraverso il rivelatore ATLAS come mostrato nell'immagine 1:
 
-- _Elettroni e Fotoni_ producono docce elettromagnetiche nel **Calorimetro Elettromagnetico**.
-- _Adroni_ come protoni e neutroni depositano energia nel **Calorimetro Adronico**.
+- _Elettroni e Fotoni_ producono sciami elettromagnetici nel **Calorimetro Elettromagnetico**.
+- _Adroni_, tra cui protoni e neutroni, depositano energia nel **Calorimetro Adronico**.
 - _Muoni_ attraversano tutti gli strati interni con minima perdita di energia e sono catturati nello **Spettrometro di Muoni**.
-- _Neutrini_, che raramente interagiscono con la materia, solitamente non lasciano traccia diretta ma possono essere dedotti dall'energia mancante nel rivelatore.
+- _Neutrini_, che raramente interagiscono con la materia, solitamente non lasciano traccia diretta ma possono essere dedotti dall'[energia mancante](https://atlas.cern/updates/blog/what-happens-when-energy-goes-missing) nel rivelatore.
 
 Ciascuno di questi componenti lavora insieme per catturare le proprietà delle particelle e consentire la ricostruzione dei dettagli delle interazioni delle particelle nelle collisioni.
