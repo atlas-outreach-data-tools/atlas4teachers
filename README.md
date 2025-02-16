@@ -5,7 +5,7 @@ This analysis web app was created as introductory material to the world of physi
 
 The web app is currently available in English and Spanish. If you are interested in translating the app, you can find instructions below.
 
-## About the app
+## 🖥️ About the app
 The app is written in Python using the Streamlit library. It is hosted on the OKD service from CERN. 
 
 It includes the following sections:
@@ -15,7 +15,7 @@ It includes the following sections:
 4. **Introduction to Python**: Material on Python basics and histogramming.
 5. **Classroom Toolkit**: Extra material in other formats like video, cheat sheets, fact sheets, etc.
 
-## Translating the app
+## 📝 Translating the app
 Since most of the documentation in the app is in markdown format, translating it should be fairly easy.
 
 ### 1. Copy the `english` folder
@@ -82,7 +82,7 @@ The `analysis` folder include JSON files. Only the values should be translated, 
 ```
 Here you should translate: "Now, let's make the cut:", "Cut on leptons p$_T$".
 
-## Running the analyses
+## 📊 Running the analyses
 The plots for the analyses included in the app were obtained using the `analysis.py` file found inside the `scripts` folder. 
 
 The script can be use with the following parameters:
