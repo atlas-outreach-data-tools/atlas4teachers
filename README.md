@@ -11,7 +11,7 @@ The app is written in Python using the Streamlit library. It is hosted on the OK
 It includes the following sections:
 1. **Foundations of Particle Physics**: Basics about particles, the Standard Model and beyond.
 2. **Experimental Particle Physics**: Introduction to the LHC, detectors and the ATLAS experiment.
-3. **Hands-on Analysis**: Analysis to find the Z boson from its dileptonic decay and the Higgs boson in the ZZ channel.
+3. **Hands-on Analysis**: Identifying the Z boson via its dileptonic decay and the Higgs boson through the ZZ channel.
 4. **Introduction to Python**: Material on Python basics and histogramming.
 5. **Classroom Toolkit**: Extra material in other formats like video, cheat sheets, fact sheets, etc.
 
