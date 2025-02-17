@@ -130,6 +130,25 @@ def lepton_type_cut(lep_type, n_leptons, cut):
     return mask
 
 def lepton_charge_cut(lep_charge, n_leptons, cut):
+    """
+    Apply a lepton charge cut.
+
+    For 'opposite':
+      - 2 or 3 leptons: True if the sum of the first two charges is 0.
+      - 4 or 5 leptons: True if both the first two and the next two charges sum to 0.
+    
+    For 'same':
+      - 2 or 3 leptons: True if the sum of the first two charges is ±2.
+      - 4 or 5 leptons: True if both pairs sum to ±2.
+    
+    Parameters:
+        lep_charge (ndarray): Array of lepton charges.
+        n_leptons (int): Number of leptons.
+        cut (str): Either 'opposite' or 'same'.
+
+    Returns:
+        ndarray: Boolean mask indicating which rows pass the cut.
+    """
     if cut=='opposite':
         if n_leptons == 2 or n_leptons == 3:
             # For 2 or 3 leptons, the mask is based on the sum of the first two leptons
@@ -157,16 +176,50 @@ def lepton_charge_cut(lep_charge, n_leptons, cut):
     return mask
 
 def calc_weight(events,lumi):
+    """
+    Calculate the event weight for luminosity scaling.
+
+    Multiplies the event cross section, filter efficiency, k-factor, Monte Carlo weight,
+    and various scale factors with the luminosity (converted by multiplying by 1000)
+    and normalizes by the sum of weights.
+
+    Parameters:
+        events: An object with attributes:
+            - xsec: Cross section.
+            - filteff: Filter efficiency.
+            - kfac: k-factor correction.
+            - mcWeight: Monte Carlo weight.
+            - ScaleFactor_PILEUP: Pileup scale factor.
+            - ScaleFactor_ELE: Electron scale factor.
+            - ScaleFactor_MUON: Muon scale factor.
+            - sum_of_weights: Total sum of weights for normalization.
+        lumi (float): Integrated luminosity.
+
+    Returns:
+        float: The computed event weight.
+    """
     return (
-        (lumi*1000*events.xsec*events.filteff*events.kfac #events.corrected_xsec#
+        (lumi*1000*events.xsec*events.filteff*events.kfac
         * events.mcWeight
         * events.ScaleFactor_PILEUP
         * events.ScaleFactor_ELE
         * events.ScaleFactor_MUON)/(events.sum_of_weights)
-        #* events.scaleFactor_LepTRIGGER
     )
 
 def invariant_mass(pt, eta, phi, E, n_leptons):
+    """
+    Compute the invariant mass from lepton four-momenta.
+
+    Constructs four-vectors from the given pt, eta, phi, and E arrays,
+    sums the first `n_leptons` vectors, and returns the invariant mass.
+
+    Parameters:
+        pt, eta, phi, E: Arrays of transverse momentum, pseudorapidity, azimuthal angle, and energy.
+        n_leptons (int): Number of leptons (supports 2-5).
+
+    Returns:
+        Array-like: Invariant mass computed from the summed four-momentum.
+    """
     p4 = vector.zip({"pt": pt, "eta": eta, "phi": phi, "E": E})
 
     if n_leptons == 2:
@@ -181,6 +234,31 @@ def invariant_mass(pt, eta, phi, E, n_leptons):
     return mass
 
 def read_file(path,sample, lumi_used, n_leptons, flavor, charge_pair, bin_edges, lumi_weights=None):
+    """
+    Process a ROOT file with uproot, apply lepton selection cuts, and fill invariant mass histograms.
+
+    This function reads the 'analysis' tree from the specified ROOT file, applies a series of cuts
+    (e.g., lepton cleaning, trigger, type, and charge cuts, and optionally pT cuts), computes the
+    invariant mass for events with a specified number of leptons, and fills histograms for the mass
+    distribution along with the squared weights for uncertainty estimation. It also tracks event counts
+    after each selection step for logging purposes.
+
+    Parameters:
+        path (str): Base path to the ROOT file.
+        sample (str): Sample name used for logging and to differentiate data vs. MC processing.
+        lumi_used (float): Fraction of the integrated luminosity to process.
+        n_leptons (int): Required number of leptons per event.
+        flavor (int): Lepton flavor parameter used in the lepton type cut.
+        charge_pair (str): Condition for the lepton charge cut (e.g., 'opposite' or 'same').
+        bin_edges (array-like): Bin edges for the invariant mass histogram.
+        lumi_weights (float, optional): Luminosity weight for MC samples; if provided, additional pT cuts are applied.
+
+    Returns:
+        tuple:
+            - hist_mass (np.array): Histogram counts of the invariant mass.
+            - hist_mass_weights_squared (np.array): Histogram of the squared weights.
+            - event_counts (dict): Dictionary tracking event counts after each selection cut.
+    """
     start = time.time() # start the clock
     logging.info("\tProcessing: "+sample) # print which sample is being processed
     # Initialize histograms for 'mass' and sum of weights squared
@@ -305,6 +383,28 @@ def read_file(path,sample, lumi_used, n_leptons, flavor, charge_pair, bin_edges,
     return hist_mass, hist_mass_weights_squared, event_counts
 
 def get_data_from_files(lumi_data, lumi_mc, n_leptons, flavor, charge_pair, bin_edges, process_mc=True):
+    """
+    Aggregate invariant mass histograms and event counts from ROOT files.
+
+    Processes files listed in the global SAMPLES dictionary by calling read_file() for each sample.
+    Applies lepton cuts, computes invariant mass histograms, and accumulates event counts.
+    MC and data files are handled differently using provided luminosities.
+
+    Parameters:
+        lumi_data (float): Luminosity for data processing.
+        lumi_mc (float): Luminosity for MC processing.
+        n_leptons (int): Number of leptons required in an event.
+        flavor (int): Lepton flavor for the type cut.
+        charge_pair (str): Charge cut condition ('opposite' or 'same').
+        bin_edges (array-like): Bin edges for the invariant mass histogram.
+        process_mc (bool, optional): Whether to process MC samples with MC-specific weights (default True).
+
+    Returns:
+        tuple: (data, data_weights_squared, event_counts)
+            data (dict): Histogram counts for each sample.
+            data_weights_squared (dict): Histogram of squared weights for uncertainties.
+            event_counts (dict): Cumulative event counts after each selection cut.
+    """
     data = {}  # Dictionary to hold histograms for each sample
     data_weights_squared = {}  # For statistical uncertainties
     
@@ -370,6 +470,29 @@ def get_data_from_files(lumi_data, lumi_mc, n_leptons, flavor, charge_pair, bin_
 
 def make_plot(data, data_weights_squared, lumi_used, bin_edges, background='light', components_to_plot=None, 
               filename_suffix='data_backgrounds_signal', filename_prefix='Higgs_', n_leptons='4'):
+    """
+    Create and save a stacked histogram plot of invariant mass distributions for data and MC samples.
+
+    This function plots data points (with Poisson errors) and stacks MC histograms with their
+    statistical uncertainties. Plot aesthetics (colors, text) are adjusted based on the background.
+    Annotations and labels are added according to the provided parameters, and the figure is saved as
+    a PNG file.
+
+    Parameters:
+        data (dict): Dictionary of histogram counts, keyed by sample names (e.g., 'data', MC samples).
+        data_weights_squared (dict): Dictionary of squared weight histograms for statistical errors.
+        lumi_used (float): Integrated luminosity used in the plot (displayed in the annotations).
+        bin_edges (array-like): Array defining the histogram bin edges.
+        background (str, optional): Background style ('light' for dark text, else white text). Defaults to 'light'.
+        components_to_plot (list, optional): List of MC sample names to include. If None, all MC samples (excluding 'data') are plotted.
+        filename_suffix (str, optional): Suffix for the saved filename. Defaults to 'data_backgrounds_signal'.
+        filename_prefix (str, optional): Prefix for the saved filename. Defaults to 'Higgs_'.
+        n_leptons (str, optional): Number of leptons for labeling (e.g., '4'). Defaults to '4'.
+
+    Returns:
+        str: The filename of the saved plot image.
+    """
+    
     # Set colors based on background
     if background == 'light':
         text_color = 'black'
