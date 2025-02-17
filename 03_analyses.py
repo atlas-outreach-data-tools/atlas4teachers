@@ -143,7 +143,10 @@ def run(selected_language):
 
     if st.session_state.show_full_content:
         # Objectives
-        load_markdown_file_combined("introduction.md", "analyses", selected_language)
+        load_markdown_file_combined(filename="introduction.md", 
+                                    folder="analyses", 
+                                    language=selected_language, 
+                                    theme=theme["base"])
 
         # Luminosity
         load_markdown_file_combined("luminosity.md", "analyses", selected_language)
