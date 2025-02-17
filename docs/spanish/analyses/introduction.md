@@ -10,9 +10,9 @@ En estos análisis, podrás:
 
 A continuación se muestran los gráficos que buscamos en este análisis:
 
-![Masa invariante del bosón Z.](images/Z-boson-invariant-mass-distribution.png)
+![Masa invariante del bosón Z.](images/Z-boson-invariant-mass-distribution_{theme}.png)
 
-![Masa invariante del bosón de Higgs](images/Higss_invariant_mass_distribution.png)
+![Masa invariante del bosón de Higgs](images/Higss_invariant_mass_distribution_{theme}.png)
 
 Estos gráficos de ejemplo no son solo ejemplos de simulación; representan resultados de análisis reales realizados en el experimento ATLAS, utilizando datos recopilados a partir de colisiones de partículas de alta energía. A medida que avance, le explicaremos cómo se crean estos gráficos y qué revelan sobre estas partículas fundamentales.
 

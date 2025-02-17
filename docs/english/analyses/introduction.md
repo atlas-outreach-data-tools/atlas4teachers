@@ -10,9 +10,9 @@ In these analyses, you will:
 
 Below are the plots we’re aiming for in this analysis:
 
-![Invariant mass of the Z boson.](images/Z-boson-invariant-mass-distribution.png)
+![Invariant mass of the Z boson.](images/Z-boson-invariant-mass-distribution_{theme}.png)
 
-![Invariant mass of the Higgs boson](images/Higss_invariant_mass_distribution.png)
+![Invariant mass of the Higgs boson](images/Higss_invariant_mass_distribution_{theme}.png)
 
 These example plots are not just toy examples; they represent results from real analyses conducted at the ATLAS experiment, using data collected from high-energy particle collisions. As you progress, we’ll explain how these plots are created and what they reveal about these fundamental particles.
 
