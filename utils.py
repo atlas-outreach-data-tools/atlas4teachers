@@ -183,14 +183,12 @@ def load_markdown_file_combined(filename, folder, language, global_namespace=Non
         # --- Code Block Handling ---
         if line.startswith("```"):
             if not in_code_block:
-                # Start of a code block
                 in_code_block = True
                 # Render any pending markdown before starting the code block
                 if markdown_buffer:
                     st.markdown('\n'.join(markdown_buffer), unsafe_allow_html=True)
                     markdown_buffer = []
             else:
-                # End of a code block
                 in_code_block = False
                 code = '\n'.join(code_buffer)
                 if global_namespace is not None:
@@ -226,7 +224,6 @@ def load_markdown_file_combined(filename, folder, language, global_namespace=Non
             if alert_end_re.match(line):
                 in_alert_block = False
                 alert_text = '\n'.join(alert_buffer).strip()
-                # Display the alert based on its type
                 if alert_type == "NOTE":
                     st.info(alert_text)
                 elif alert_type == "TIP":
@@ -243,7 +240,6 @@ def load_markdown_file_combined(filename, folder, language, global_namespace=Non
             continue
 
         if alert_start_re.match(line):
-            # Flush pending markdown before starting an alert block
             if markdown_buffer:
                 st.markdown('\n'.join(markdown_buffer), unsafe_allow_html=True)
                 markdown_buffer = []
@@ -255,7 +251,6 @@ def load_markdown_file_combined(filename, folder, language, global_namespace=Non
         if image_re.match(line):
             image_match = image_re.match(line)
             if image_match:
-                # Flush pending markdown before displaying an image
                 if markdown_buffer:
                     st.markdown('\n'.join(markdown_buffer), unsafe_allow_html=True)
                     markdown_buffer = []
@@ -269,92 +264,3 @@ def load_markdown_file_combined(filename, folder, language, global_namespace=Non
     # Render any remaining markdown content
     if markdown_buffer:
         st.markdown('\n'.join(markdown_buffer), unsafe_allow_html=True)
-    """Load markdown content, replace placeholders, handle alerts and images, and render dynamically."""
-    base_path = f"docs/{language.lower()}/{folder}/{filename}"
-
-    if os.path.exists(base_path):
-        with open(base_path, 'r', encoding='utf-8') as f:
-            content = f.read()
-
-        # Replace placeholders with dynamic values
-        for key, value in placeholders.items():
-            content = content.replace(f"{{{key}}}", str(value))
-
-        markdown_buffer = []
-        in_alert_block = False
-        alert_type = None
-        alert_buffer = []
-        in_dataframe_block = False  # Track dataframe blocks
-        line_number = 0  # For unique keys
-
-        # Alert regex patterns
-        alert_start_re = re.compile(r'> \[!(NOTE|TIP|IMPORTANT|WARNING|CAUTION)\]')
-        alert_end_re = re.compile(r'> \[!END\]')
-
-        dataframe_start_re = re.compile(r'> \[!dataframe\]')
-        dataframe_end_re = re.compile(r'> \[!end\]')
-
-        for line in content.splitlines():
-            line_number += 1
-
-            # Handle dataframe blocks block to determine if dataframe
-            if in_dataframe_block:
-                if dataframe_end_re.match(line):
-                    in_dataframe_block = False
-                    if dataframe_var and dataframe_var in placeholders:
-                        if markdown_buffer:
-                            st.markdown('\n'.join(markdown_buffer), unsafe_allow_html=True)
-                            markdown_buffer = []
-                        st.dataframe(placeholders[dataframe_var])  # Render the dataframe
-                    dataframe_var = None
-                else:
-                    dataframe_var = line.strip()
-            elif dataframe_start_re.match(line):
-                in_dataframe_block = True
-            
-            # Handle alerts
-            elif in_alert_block:
-                if alert_end_re.match(line):
-                    in_alert_block = False
-                    alert_text = '\n'.join(alert_buffer).strip()
-                    # Display the alert based on its type
-                    if alert_type == "NOTE":
-                        st.info(alert_text)
-                    elif alert_type == "TIP":
-                        st.success(alert_text)
-                    elif alert_type == "IMPORTANT":
-                        st.warning(alert_text)
-                    elif alert_type == "WARNING":
-                        st.error(alert_text)
-                    elif alert_type == "CAUTION":
-                        st.warning(alert_text)
-                    alert_buffer = []
-                else:
-                    alert_buffer.append(line)
-            elif alert_start_re.match(line):
-                if markdown_buffer:
-                    st.markdown('\n'.join(markdown_buffer), unsafe_allow_html=True)
-                    markdown_buffer = []
-                alert_type = alert_start_re.match(line).group(1)
-                in_alert_block = True
-
-            # Handle images
-            elif re.match(r'!\[(.*?)\]\((.*?)\)', line):
-                image_match = re.match(r'!\[(.*?)\]\((.*?)\)', line)
-                if image_match:
-                    if markdown_buffer:
-                        st.markdown('\n'.join(markdown_buffer), unsafe_allow_html=True)
-                        markdown_buffer = []
-                    caption, img_path = image_match.groups()
-                    st.image(img_path, caption=caption, width=650)
-            
-            # Buffer markdown
-            else:
-                markdown_buffer.append(line)
-
-        # Render any remaining markdown content
-        if markdown_buffer:
-            st.markdown('\n'.join(markdown_buffer), unsafe_allow_html=True)
-
-    else:
-        st.error(f"File not found: {base_path}")
