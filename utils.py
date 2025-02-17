@@ -7,9 +7,21 @@ import io
 import sys
 import json
 
-
 def generate_header_id(header_text):
-    """Generate a valid HTML id from the header text by removing special characters."""
+    """
+    Generate a valid HTML id from the header text by removing special characters.
+
+    1. Lowercase Conversion: Converts the entire header text to lowercase.
+    2. Whitespace Replacement: Replaces all whitespace characters with hyphens ('-').
+    3. Special Character Removal: Removes any characters that are not alphanumeric, hyphens, or underscores.
+
+    Parameters:
+        header_text (str): The original header text that needs to be converted into a valid HTML id.
+
+    Returns:
+        str: A sanitized, lowercase string with hyphens replacing spaces and all other special characters removed,
+             suitable for use as an HTML id.
+    """
     # Convert to lowercase
     header_id = header_text.lower()
     # Replace spaces with hyphens
@@ -18,118 +30,21 @@ def generate_header_id(header_text):
     header_id = re.sub(r'[^a-z0-9\-_]', '', header_id)
     return header_id
 
-def insert_toc(content):
-    """Generate a floating Table of Contents based on second and third level markdown headers."""
-    toc = []
-    # Match only second (##) and third (###) level headers
-    headers = re.findall(r'^(#{2,3})\s*(.*)', content, re.MULTILINE)
-    
-    # Only proceed if there are second or third level headers
-    if headers:
-        # Create a TOC entry for each header
-        for level, header_text in headers:
-            header_id = generate_header_id(header_text)  # Generate valid HTML id
-            if level == '##':
-                toc.append(f'<a class="toc-level-2" href="#{header_id}">{header_text}</a>')
-            elif level == '###':
-                toc.append(f'<a class="toc-level-3" href="#{header_id}">{header_text}</a>')
-
-        # Create the TOC as HTML
-        toc_html = """
-        <div class="toc">
-            <h4>Contents</h4>
-            {links}
-        </div>
-        """.format(links='\n'.join(toc))
-
-        # Inject the TOC into the Streamlit app
-        st.markdown(toc_html, unsafe_allow_html=True)
-
-        # Add custom CSS for floating sidebar TOC with a transparent background and different header styles
-        st.markdown("""
-        <style>
-            .toc {
-                position: fixed;
-                top: 100px;
-                right: 20px;
-                background-color: rgba(255, 255, 255, 0); /* Transparent background */
-                padding: 1rem;
-                border-radius: 5px;
-                box-shadow: none;
-                z-index: 100;
-                width: 250px;
-                max-height: 70vh;
-                overflow-y: auto;
-            }
-            .toc h4 {
-                font-size: 16px;
-                margin-bottom: 10px;
-            }
-            .toc a {
-                color: #0366d6;
-                text-decoration: none;
-                display: block;
-                margin-bottom: 8px;
-            }
-            .toc a:hover {
-                text-decoration: underline;
-            }
-            .toc a.toc-level-2 {
-                font-size: 15px;
-                font-weight: bold;
-                margin-left: 0px; /* No indent for second-level headers */
-            }
-            .toc a.toc-level-3 {
-                font-size: 13px;
-                margin-left: 10px; /* Indent for third-level headers */
-            }
-            /* Allow the TOC to scroll */
-            .toc {
-                overflow-y: scroll;
-            }
-        </style>
-        """, unsafe_allow_html=True)
-
-def load_markdown_file_with_images(filename, folder, language):
-    """Load markdown content, display images with captions, and render text."""
-    # Construct the file path based on the selected language
-    base_path = f"docs/{language.lower()}/{folder}/{filename}"
-    
-    if os.path.exists(base_path):
-        with open(base_path, 'r', encoding='utf-8') as f:
-            content = f.read()
-
-        # Insert Table of Contents (TOC) only if there are second or third level headers
-        #insert_toc(content)
-
-        # Parse the content and replace image references
-        markdown_buffer = []
-        for line in content.splitlines():
-            # Search for image markdown syntax ![caption](image_path)
-            image_match = re.match(r'!\[(.*?)\]\((.*?)\)', line)
-            
-            if image_match:
-                # Extract caption and image path
-                caption, img_path = image_match.groups()
-                # Render the previous markdown content before the image
-                if markdown_buffer:
-                    st.markdown('\n'.join(markdown_buffer))
-                    markdown_buffer = []
-                
-                # Display the image with caption
-                st.image(img_path, caption=caption, width=650)
-            else:
-                # Add line to the markdown buffer if it's not an image
-                markdown_buffer.append(line)
-
-        # Render any remaining markdown content
-        if markdown_buffer:
-            st.markdown('\n'.join(markdown_buffer), unsafe_allow_html=True)
-
-    else:
-        st.error(f"File not found for language: {language}. Check the file path.")
-
 def get_first_level_headers(language, folder, filenames):
+    """
+    Extract the first-level markdown header (# ) from each file.
+
+    Reads files from "docs/{language}/{folder}/", retrieves the first line starting with '# ',
+    and returns a list of the header texts. Prints an error if a file is not found.
+
+    Parameters:
+        language (str): Language code (used in lowercase for the path).
+        folder (str): Folder name containing the files.
+        filenames (list): List of file names.
+
+    Returns:
+        list: First-level headers from each file.
+    """
     headers = []
     for filename in filenames:
         base_path = f"docs/{language.lower()}/{folder}/{filename}"
@@ -146,7 +61,20 @@ def get_first_level_headers(language, folder, filenames):
 
 def run_code_editor(default_code, global_namespace, height=[2,30], key=None):
     """
-    Run the code editor in Streamlit with a shared global namespace.
+    Launch a Streamlit code editor, execute submitted Python code, and display output.
+
+    Loads custom buttons from a JSON file and opens a code editor with the given default code.
+    When the user submits code, it is executed in the provided global namespace. Captured
+    standard output and any generated matplotlib figures are then displayed.
+
+    Parameters:
+        default_code (str): The initial code shown in the editor.
+        global_namespace (dict): The namespace in which the submitted code is executed.
+        height (list, optional): A two-element list defining the editor's height.
+        key (str, optional): A unique key for the editor widget.
+
+    Returns:
+        None
     """
     with open('custom/buttons_code_cells.json') as json_button_file:
         custom_buttons = json.load(json_button_file)
@@ -183,86 +111,19 @@ def run_code_editor(default_code, global_namespace, height=[2,30], key=None):
             st.pyplot(plt.gcf())
             plt.close('all')
 
-def load_markdown_file_with_images_and_code(filename, folder, global_namespace, language):
-    """Load markdown content, display images, code, and alerts in the correct order."""
-    base_path = f"docs/{language.lower()}/{folder}/{filename}"
-
-    if os.path.exists(base_path):
-        with open(base_path, 'r', encoding='utf-8') as f:
-            content = f.read()
-
-        markdown_buffer = []
-        in_code_block = False
-        code_buffer = []
-        in_alert_block = False
-        alert_type = None
-        alert_buffer = []
-        line_number = 0  # Add a counter for unique keys
-
-        alert_start_re = re.compile(r'> \[!(NOTE|TIP|IMPORTANT|WARNING|CAUTION)\]')
-        alert_end_re = re.compile(r'> \[!END\]')
-
-        for line in content.splitlines():
-            line_number += 1  # Increment line number for unique key generation
-
-            if line.startswith("```"):
-                if not in_code_block:
-                    in_code_block = True
-                    # Render any accumulated markdown content before the code block
-                    if markdown_buffer:
-                        st.markdown('\n'.join(markdown_buffer), unsafe_allow_html=True)
-                        markdown_buffer = []
-                else:
-                    in_code_block = False
-                    code = '\n'.join(code_buffer)
-                    # Pass a unique key to each code editor block
-                    run_code_editor(code, global_namespace, key=f"{filename}_line_{line_number}")
-                    code_buffer = []
-            elif in_code_block:
-                code_buffer.append(line)
-            elif in_alert_block:
-                if alert_end_re.match(line):
-                    in_alert_block = False
-                    alert_text = '\n'.join(alert_buffer).strip()
-                    if alert_type == "NOTE":
-                        st.info(alert_text)
-                    elif alert_type == "TIP":
-                        st.success(alert_text)
-                    elif alert_type == "IMPORTANT":
-                        st.warning(alert_text)
-                    elif alert_type == "WARNING":
-                        st.error(alert_text)
-                    elif alert_type == "CAUTION":
-                        st.warning(alert_text)
-                    alert_buffer = []
-                else:
-                    alert_buffer.append(line)
-            else:
-                if alert_start_re.match(line):
-                    if markdown_buffer:
-                        st.markdown('\n'.join(markdown_buffer), unsafe_allow_html=True)
-                        markdown_buffer = []
-                    alert_type = alert_start_re.match(line).group(1)
-                    in_alert_block = True
-                else:
-                    image_match = re.match(r'!\[(.*?)\]\((.*?)\)', line)
-                    if image_match:
-                        if markdown_buffer:
-                            st.markdown('\n'.join(markdown_buffer), unsafe_allow_html=True)
-                            markdown_buffer = []
-                        caption, img_path = image_match.groups()
-                        st.image(img_path, caption=caption, width=650)
-                    else:
-                        markdown_buffer.append(line)
-
-        if markdown_buffer:
-            st.markdown('\n'.join(markdown_buffer), unsafe_allow_html=True)
-
-    else:
-        st.error(f"File not found for language: {language}. Check the file path.")
-
-
 def load_markdown_preview(filename, folder, language, lines=3):
+    """
+    Load a markdown file and return a preview of its first few lines.
+    
+    Parameters:
+        filename (str): Name of the markdown file.
+        folder (str): Folder containing the file.
+        language (str): Language folder name (converted to lowercase).
+        lines (int, optional): Number of lines to include in the preview (default is 3).
+    
+    Returns:
+        str: Preview text from the file.
+    """
     # Load the markdown file
     full_path = f"docs/{language.lower()}/{folder}/{filename}"
     with open(full_path, "r") as file:
@@ -272,7 +133,142 @@ def load_markdown_preview(filename, folder, language, lines=3):
     preview = "".join(content[:lines]).strip()
     return preview
 
-def load_markdown_file_with_dynamic_content_and_alerts(filename, folder, language, **placeholders):
+def load_markdown_file_combined(filename, folder, language, global_namespace=None, **placeholders):
+    """
+    Load markdown content from a file and process dynamic content, images, code blocks,
+    alerts, and dataframe blocks based on the file's content.
+
+    Parameters:
+        - filename: The markdown file name.
+        - folder: The folder in which the file is stored.
+        - language: The language sub-folder.
+        - global_namespace: Optional. If provided, code blocks will be executed via run_code_editor.
+        - placeholders: Optional keyword arguments for dynamic placeholder replacement.
+    """
+    base_path = f"docs/{language.lower()}/{folder}/{filename}"
+    
+    if not os.path.exists(base_path):
+        st.error(f"File not found: {base_path}")
+        return
+
+    with open(base_path, 'r', encoding='utf-8') as f:
+        content = f.read()
+
+    # Replace dynamic placeholders if any
+    for key, value in placeholders.items():
+        content = content.replace(f"{{{key}}}", str(value))
+    
+    # Initialize buffers and flags
+    markdown_buffer = []
+    in_code_block = False
+    code_buffer = []
+    in_alert_block = False
+    alert_type = None
+    alert_buffer = []
+    in_dataframe_block = False
+    dataframe_var = None  # The key for the dataframe in placeholders
+    line_number = 0  # For generating unique keys for code blocks
+
+    # Regular expressions for different markers
+    alert_start_re = re.compile(r'> \[!(NOTE|TIP|IMPORTANT|WARNING|CAUTION)\]')
+    alert_end_re = re.compile(r'> \[!END\]')
+    dataframe_start_re = re.compile(r'> \[!dataframe\]')
+    dataframe_end_re = re.compile(r'> \[!end\]')
+    image_re = re.compile(r'!\[(.*?)\]\((.*?)\)')
+
+    # Process the file line by line
+    for line in content.splitlines():
+        line_number += 1
+
+        # --- Code Block Handling ---
+        if line.startswith("```"):
+            if not in_code_block:
+                # Start of a code block
+                in_code_block = True
+                # Render any pending markdown before starting the code block
+                if markdown_buffer:
+                    st.markdown('\n'.join(markdown_buffer), unsafe_allow_html=True)
+                    markdown_buffer = []
+            else:
+                # End of a code block
+                in_code_block = False
+                code = '\n'.join(code_buffer)
+                if global_namespace is not None:
+                    run_code_editor(code, global_namespace, key=f"{filename}_line_{line_number}")
+                code_buffer = []
+            continue  # Skip further processing for this line
+
+        if in_code_block:
+            code_buffer.append(line)
+            continue
+
+        # --- Dataframe Block Handling ---
+        if in_dataframe_block:
+            if dataframe_end_re.match(line):
+                in_dataframe_block = False
+                if dataframe_var and dataframe_var in placeholders:
+                    if markdown_buffer:
+                        st.markdown('\n'.join(markdown_buffer), unsafe_allow_html=True)
+                        markdown_buffer = []
+                    st.dataframe(placeholders[dataframe_var])
+                dataframe_var = None
+            else:
+                # Assume the line inside a dataframe block is the key for the dataframe
+                dataframe_var = line.strip()
+            continue
+
+        if dataframe_start_re.match(line):
+            in_dataframe_block = True
+            continue
+
+        # --- Alert Block Handling ---
+        if in_alert_block:
+            if alert_end_re.match(line):
+                in_alert_block = False
+                alert_text = '\n'.join(alert_buffer).strip()
+                # Display the alert based on its type
+                if alert_type == "NOTE":
+                    st.info(alert_text)
+                elif alert_type == "TIP":
+                    st.success(alert_text)
+                elif alert_type == "IMPORTANT":
+                    st.warning(alert_text)
+                elif alert_type == "WARNING":
+                    st.error(alert_text)
+                elif alert_type == "CAUTION":
+                    st.warning(alert_text)
+                alert_buffer = []
+            else:
+                alert_buffer.append(line)
+            continue
+
+        if alert_start_re.match(line):
+            # Flush pending markdown before starting an alert block
+            if markdown_buffer:
+                st.markdown('\n'.join(markdown_buffer), unsafe_allow_html=True)
+                markdown_buffer = []
+            alert_type = alert_start_re.match(line).group(1)
+            in_alert_block = True
+            continue
+
+        # --- Image Handling ---
+        if image_re.match(line):
+            image_match = image_re.match(line)
+            if image_match:
+                # Flush pending markdown before displaying an image
+                if markdown_buffer:
+                    st.markdown('\n'.join(markdown_buffer), unsafe_allow_html=True)
+                    markdown_buffer = []
+                caption, img_path = image_match.groups()
+                st.image(img_path, caption=caption, width=650)
+            continue
+
+        # --- Accumulate Markdown ---
+        markdown_buffer.append(line)
+
+    # Render any remaining markdown content
+    if markdown_buffer:
+        st.markdown('\n'.join(markdown_buffer), unsafe_allow_html=True)
     """Load markdown content, replace placeholders, handle alerts and images, and render dynamically."""
     base_path = f"docs/{language.lower()}/{folder}/{filename}"
 

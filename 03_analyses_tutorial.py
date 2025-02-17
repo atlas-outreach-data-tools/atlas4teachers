@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-from utils import load_markdown_file_with_dynamic_content_and_alerts
+from utils import load_markdown_file_combined
 import os
 import json
 
@@ -43,25 +43,25 @@ def run(selected_language):
 
     # Streamlit app
     # Introduction to tutorial
-    load_markdown_file_with_dynamic_content_and_alerts(filename='intro.md', 
-                                                       folder='analyses/tutorial', 
-                                                       language=selected_language)
+    load_markdown_file_combined(filename='intro.md',
+                                folder='analyses/tutorial',
+                                language=selected_language)
     
-    load_markdown_file_with_dynamic_content_and_alerts(filename='cuts.md', 
-                                                       folder='analyses/tutorial', 
-                                                       language=selected_language)
+    load_markdown_file_combined(filename='cuts.md', 
+                                folder='analyses/tutorial', 
+                                language=selected_language)
     
-    load_markdown_file_with_dynamic_content_and_alerts(filename='dataset.md', 
-                                                       folder='analyses/tutorial', 
-                                                       language=selected_language)
+    load_markdown_file_combined(filename='dataset.md', 
+                                folder='analyses/tutorial', 
+                                language=selected_language)
 
     st.dataframe(data)
 
     # Column info
-    load_markdown_file_with_dynamic_content_and_alerts(filename='columns.md', 
-                                                       folder='analyses/tutorial', 
-                                                       language=selected_language,
-                                                       data = data.shape[0])
+    load_markdown_file_combined(filename='columns.md', 
+                                folder='analyses/tutorial', 
+                                language=selected_language,
+                                data = data.shape[0])
     
     # Initial visualization
     col1, col2 = st.columns(2)
@@ -75,9 +75,9 @@ def run(selected_language):
         st.pyplot(fig)    
 
     # Selection: Filter by number of particles
-    load_markdown_file_with_dynamic_content_and_alerts(filename='selection_cut.md', 
-                                                       folder='analyses/tutorial', 
-                                                       language=selected_language)
+    load_markdown_file_combined(filename='selection_cut.md', 
+                                folder='analyses/tutorial', 
+                                language=selected_language)
 
     selected_nLeptons = st.multiselect(
         "Choose the number of particles to include:",
@@ -88,11 +88,11 @@ def run(selected_language):
     filtered_data = data[data["nLeptons"].isin(selected_nLeptons)]
     filtered_data.reset_index(inplace=True, drop=True)
 
-    load_markdown_file_with_dynamic_content_and_alerts(filename='visualization.md', 
-                                                       folder='analyses/tutorial', 
-                                                       language=selected_language,
-                                                       filtered_data_size=len(filtered_data),
-                                                       filtered_data=filtered_data)
+    load_markdown_file_combined(filename='visualization.md', 
+                                folder='analyses/tutorial', 
+                                language=selected_language,
+                                filtered_data_size=len(filtered_data),
+                                filtered_data=filtered_data)
 
     col1, col2 = st.columns(2)
     with col1:
@@ -105,11 +105,11 @@ def run(selected_language):
         st.pyplot(fig)   
 
     # Range: Filter by energy range
-    load_markdown_file_with_dynamic_content_and_alerts(filename='range_cut.md', 
-                                                       folder='analyses/tutorial', 
-                                                       language=selected_language,
-                                                       filtered_data_size=len(filtered_data),
-                                                       filtered_data=filtered_data)
+    load_markdown_file_combined(filename='range_cut.md', 
+                                folder='analyses/tutorial', 
+                                language=selected_language,
+                                filtered_data_size=len(filtered_data),
+                                filtered_data=filtered_data)
     
     min_energy, max_energy = st.slider(
         "Select energy range (GeV):",
@@ -122,11 +122,11 @@ def run(selected_language):
     ]
     filtered_data.reset_index(inplace=True, drop=True)
 
-    load_markdown_file_with_dynamic_content_and_alerts(filename='visualization_again.md', 
-                                                       folder='analyses/tutorial', 
-                                                       language=selected_language,
-                                                       filtered_data_size=len(filtered_data),
-                                                       filtered_data=filtered_data)
+    load_markdown_file_combined(filename='visualization_again.md', 
+                                folder='analyses/tutorial', 
+                                language=selected_language,
+                                filtered_data_size=len(filtered_data),
+                                filtered_data=filtered_data)
 
     col1, col2 = st.columns(2)
     with col1:
@@ -138,6 +138,6 @@ def run(selected_language):
         plot_histogram(filtered_data, "LeadingLeptonEnergy", ax, extras['histogram'], extras['frequency'])
         st.pyplot(fig)   
 
-    load_markdown_file_with_dynamic_content_and_alerts(filename='summary.md', 
-                                                       folder='analyses/tutorial', 
-                                                       language=selected_language)
+    load_markdown_file_combined(filename='summary.md', 
+                                folder='analyses/tutorial', 
+                                language=selected_language)

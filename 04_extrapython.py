@@ -1,7 +1,7 @@
 import streamlit as st
 import os
 import json
-from utils import load_markdown_file_with_images_and_code, get_first_level_headers, load_markdown_preview
+from utils import load_markdown_file_combined, get_first_level_headers, load_markdown_preview
 
 def run(selected_language):
     # Shared global namespace across all cells
@@ -29,7 +29,7 @@ def run(selected_language):
     tabs_path = ['01_intro.md', '02_histograms.md']
     tab_titles = get_first_level_headers(selected_language, folder, tabs_path)
 
-    load_markdown_file_with_images_and_code(general_info, folder, {}, selected_language)
+    load_markdown_file_combined(general_info, folder, selected_language, global_namespace)
      
     # Create the tabs
     tabs = st.tabs(tab_titles)
@@ -51,7 +51,7 @@ def run(selected_language):
                 st.rerun()  # Refresh the app to display the full content
         else:
             # Show full content
-            load_markdown_file_with_images_and_code(tabs_path[0], folder, global_namespace, selected_language)
+            load_markdown_file_combined(tabs_path[0], folder, selected_language, global_namespace)
             if st.button(done, key="intro_done"):
                 st.session_state["expanded_intro"] = False
                 st.rerun()  # Refresh the app to show the preview again
@@ -71,7 +71,7 @@ def run(selected_language):
                 st.rerun()  # Refresh the app to display the full content
         else:
             # Show full content
-            load_markdown_file_with_images_and_code(tabs_path[1], folder, global_namespace, selected_language)
+            load_markdown_file_combined(tabs_path[1], folder, selected_language, global_namespace)
             if st.button(done, key="histograms_done"):
                 st.session_state["expanded_histograms"] = False
                 st.rerun()  # Refresh the app to show the preview again

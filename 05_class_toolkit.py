@@ -1,7 +1,7 @@
 import streamlit as st
 import os
 import json
-from utils import load_markdown_file_with_images, get_first_level_headers, load_markdown_preview, load_markdown_file_with_images_and_code
+from utils import load_markdown_file_combined, get_first_level_headers, load_markdown_preview
 
 def run(selected_language):
     folder = "resources"
@@ -29,7 +29,7 @@ def run(selected_language):
     tab_titles = get_first_level_headers(selected_language, folder, tabs_path)
 
     # Print the intro to the module
-    load_markdown_file_with_images(general_info, folder, selected_language)
+    load_markdown_file_combined(general_info, folder, selected_language)
 
     # Create the tabs
     tabs = st.tabs(tab_titles)
@@ -51,7 +51,7 @@ def run(selected_language):
                 st.rerun()  # Refresh the app to display the full content
         else:
             # Show full content and video
-            load_markdown_file_with_images_and_code(tabs_path[0], folder, {},selected_language) 
+            load_markdown_file_combined(tabs_path[0], folder,selected_language, global_namespace={}) 
             if st.button(done, key="printables_done"):
                 st.session_state["expanded_printables"] = False
                 st.rerun()  # Refresh the app to show the preview again
@@ -71,7 +71,7 @@ def run(selected_language):
                 st.rerun()  # Refresh the app to display the full content
         else:
             # Show full content
-            load_markdown_file_with_images_and_code(tabs_path[1], folder, {}, selected_language)
+            load_markdown_file_combined(tabs_path[1], folder, selected_language, global_namespace={})
             if st.button(done, key="videos_done"):
                 st.session_state["expanded_videos"] = False
                 st.rerun()  # Refresh the app to show the preview again
@@ -91,7 +91,7 @@ def run(selected_language):
                 st.rerun()  # Refresh the app to display the full content
         else:
             # Show full content
-            load_markdown_file_with_images(tabs_path[2], folder, selected_language)
+            load_markdown_file_combined(tabs_path[2], folder, selected_language)
             if st.button(done, key="glossary_done"):
                 st.session_state["expanded_glossary"] = False
                 st.rerun()  # Refresh the app to show the preview again

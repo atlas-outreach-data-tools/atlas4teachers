@@ -11,7 +11,7 @@ import os
 import json
 import random
 import time
-from utils import load_markdown_file_with_dynamic_content_and_alerts, load_markdown_preview
+from utils import load_markdown_file_combined, load_markdown_preview
 
 def run(selected_language):
     # Initialize everything needed
@@ -143,10 +143,10 @@ def run(selected_language):
 
     if st.session_state.show_full_content:
         # Objectives
-        load_markdown_file_with_dynamic_content_and_alerts("introduction.md", "analyses", selected_language)
+        load_markdown_file_combined("introduction.md", "analyses", selected_language)
 
         # Luminosity
-        load_markdown_file_with_dynamic_content_and_alerts("luminosity.md", "analyses", selected_language)
+        load_markdown_file_combined("luminosity.md", "analyses", selected_language)
 
         # Create a dropdown for luminosity
         lumi = st.selectbox(
@@ -210,23 +210,20 @@ def run(selected_language):
                         st.error(luminosity_quiz["feedback"]["1"])
 
             # Using a selectbox to let users choose between amounts of leptons
-            load_markdown_file_with_dynamic_content_and_alerts(
-                filename="n_leptons.md",
-                folder="analyses",
-                language=selected_language,
-                theme=theme["base"],
-                lumi=lumi)
+            load_markdown_file_combined(filename="n_leptons.md",
+                                        folder="analyses",
+                                        language=selected_language,
+                                        theme=theme["base"],
+                                        lumi=lumi)
             
             # Define the options
             n_leptons_options = cuts["n_leptons"]["selectbox_options"]
 
             # Create the selectbox
-            n_leptons = st.selectbox(
-                cuts["n_leptons"]["selectbox_label"],
-                n_leptons_options,
-                index=0,  # Default index for "--"
-                key='n_leptons_selection'
-            )
+            n_leptons = st.selectbox(cuts["n_leptons"]["selectbox_label"],
+                                    n_leptons_options,
+                                    index=0,  # Default index for "--"
+                                    key='n_leptons_selection')
 
             # Access the selected value from session_state
             n_leptons = st.session_state['n_leptons_selection']
@@ -281,12 +278,11 @@ def run(selected_language):
                     else:
                         st.error(lepton_selection_quiz["feedback"]["1"])
 
-            load_markdown_file_with_dynamic_content_and_alerts(
-                filename="conservation.md",
-                folder="analyses",
-                language=selected_language,
-                theme=theme["base"],
-                lumi=lumi)
+            load_markdown_file_combined(filename="conservation.md",
+                                        folder="analyses",
+                                        language=selected_language,
+                                        theme=theme["base"],
+                                        lumi=lumi)
             
             flavor_options = cuts['flavor']['selectbox_options']
             flavor = st.selectbox(cuts['flavor']['selectbox_label'], 
@@ -386,10 +382,9 @@ def run(selected_language):
 
         # Step 4: Cuts on leptons pT only for Higgs
         if st.session_state.leptoncharge_cut_applied and st.session_state.is_higgs:
-            load_markdown_file_with_dynamic_content_and_alerts(
-                filename="pt_cut.md",
-                folder="analyses",
-                language=selected_language)
+            load_markdown_file_combined(filename="pt_cut.md",
+                                        folder="analyses",
+                                        language=selected_language)
 
             # Display initial image
             if not st.session_state['show_hint']:
@@ -450,10 +445,9 @@ def run(selected_language):
 
         # Steep 5: invariant mass plot
         if (st.session_state.leptoncharge_cut_applied and not st.session_state.is_higgs) or (st.session_state.is_higgs and st.session_state.leptonpt_cut_applied):
-            load_markdown_file_with_dynamic_content_and_alerts(
-                filename="invariant_mass.md",
-                folder="analyses",
-                language=selected_language)
+            load_markdown_file_combined(filename="invariant_mass.md",
+                                        folder="analyses",
+                                        language=selected_language)
             
             with st.expander("🔍 Quiz", expanded=st.session_state['expand_all']):
                 # Retrieve the quiz data from the JSON
@@ -514,10 +508,9 @@ def run(selected_language):
                 if answer_final == options[correct_option_index]:
                     if st.session_state.is_z:
                         st.balloons()
-                    load_markdown_file_with_dynamic_content_and_alerts(
-                    filename="discussion.md",
-                    folder="analyses",
-                    language=selected_language)
+                    load_markdown_file_combined(filename="discussion.md",
+                                                folder="analyses",
+                                                language=selected_language)
             else:
                 st.markdown(f"## {higgs['intro']['title']}")
 
@@ -597,16 +590,14 @@ def run(selected_language):
                             st.balloons()
 
                         if quiz_signal:
-                            load_markdown_file_with_dynamic_content_and_alerts(
-                                filename="extra_higgs.md",
-                                folder="analyses",
-                                language=selected_language)
+                            load_markdown_file_combined(filename="extra_higgs.md",
+                                                        folder="analyses",
+                                                        language=selected_language)
 
                             st.markdown("---")
-                            load_markdown_file_with_dynamic_content_and_alerts(
-                                filename="discussion.md",
-                                folder="analyses",
-                                language=selected_language)
+                            load_markdown_file_combined(filename="discussion.md",
+                                                        folder="analyses",
+                                                        language=selected_language)
                             
 
 

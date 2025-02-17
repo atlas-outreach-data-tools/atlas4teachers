@@ -1,7 +1,7 @@
 import streamlit as st
 import os
 import json
-from utils import load_markdown_file_with_images, get_first_level_headers, load_markdown_preview
+from utils import load_markdown_file_combined, get_first_level_headers, load_markdown_preview
 
 def run(selected_language):
     folder = "experimental"
@@ -29,7 +29,7 @@ def run(selected_language):
     tab_titles = get_first_level_headers(selected_language, folder, tabs_path)
 
     # Print the intro to the module
-    load_markdown_file_with_images(general_info, folder, selected_language)
+    load_markdown_file_combined(general_info, folder, selected_language)
 
     # Create the tabs
     tabs = st.tabs(tab_titles)
@@ -51,7 +51,7 @@ def run(selected_language):
                 st.rerun()  # Refresh the app to display the full content
         else:
             # Show full content and video
-            load_markdown_file_with_images(tabs_path[0], folder, selected_language)
+            load_markdown_file_combined(tabs_path[0], folder, selected_language)
             st.video("https://www.youtube.com/embed/pQhbhpU9Wrg")
             if st.button(done, key="accelerators_done"):
                 st.session_state["expanded_accelerators"] = False
@@ -72,7 +72,7 @@ def run(selected_language):
                 st.rerun()  # Refresh the app to display the full content
         else:
             # Show full content
-            load_markdown_file_with_images(tabs_path[1], folder, selected_language)
+            load_markdown_file_combined(tabs_path[1], folder, selected_language)
             if st.button(done, key="detectors_done"):
                 st.session_state["expanded_detectors"] = False
                 st.rerun()  # Refresh the app to show the preview again
@@ -92,7 +92,7 @@ def run(selected_language):
                 st.rerun()  # Refresh the app to display the full content
         else:
             # Show full content
-            load_markdown_file_with_images(tabs_path[2], folder, selected_language)
+            load_markdown_file_combined(tabs_path[2], folder, selected_language)
             if st.button(done, key="atlas_done"):
                 st.session_state["expanded_atlas"] = False
                 st.rerun()  # Refresh the app to show the preview again
