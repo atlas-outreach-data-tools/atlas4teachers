@@ -11,19 +11,19 @@ En el LHC, los bosones de Higgs se producen de varias maneras, conocidas como **
 
 - **Fusión de gluones**: el modo de producción más común en el LHC, donde dos gluones (de protones en el colisionador) interactúan para producir un bosón de Higgs a través de un bucle de quarks pesados, a menudo el quark top (imagen 1). Este proceso es altamente probable debido a la fuerte interacción entre gluones y quarks.
 
-![Imagen 1: Producción del bosón de Higgs a partir de la fusión de gluones.](images/ggH.png)
+![Imagen 1: Producción del bosón de Higgs (H) a través de la fusión de gluones (g), donde dos gluones, representados como líneas rizadas o enrolladas, interactúan a través de un bucle que contiene el quark top (t) y su antipartícula (t̄), ambos mostrados como líneas rectas con flechas, para producir el bosón de Higgs, representado por una línea de puntos.](images/ggH.png)
 
 - **Fusión de bosones vectoriales (VBF)**: en este modo, dos quarks emiten cada uno un bosón W o Z, que interactúan para producir un bosón de Higgs (imagen 2). Los quarks mismos suelen dispersarse en ángulos altos, dejando una firma distintiva de dos "chorros" en el detector.
 
-![Imagen 2: Producción del bosón de Higgs a partir de la fusión de bosones vectoriales.](images/VBFH.png)
+![Imagen 2: Producción del bosón de Higgs (H) mediante la fusión de bosones vectoriales, donde los quarks (q) representados por líneas rectas con flechas emiten bosones vectoriales (W, Z) mostrados como líneas onduladas que se fusionan para formar el bosón de Higgs, representado como una línea de puntos.](images/VBFH.png)
 
 - **Producción asociada (o Higgs-Strahlung)**: aquí, se produce un bosón de Higgs junto con un bosón W o Z (imagen 3).
 
-![Imagen 3: Producción del bosón de Higgs a partir de la producción asociada.](images/WH.png)
+![Imagen 3: Producción del bosón de Higgs (H) a través de la producción asociada, donde un quark (q), mostrado como una línea recta con una flecha, emite un bosón vectorial (W o Z) representado por una línea ondulada, lo que resulta en la producción simultánea del bosón de Higgs, representado como una línea de puntos.](images/WH.png)
 
 - **Fusión de quarks top**: un modo más raro en el que se produce un bosón de Higgs en asociación con un par de quarks top (imagen 4). Este proceso ayuda a estudiar la interacción entre el bosón de Higgs y la partícula más pesada conocida, el quark top.
 
-![Imagen 4: Producción del bosón de Higgs a partir de la fusión de quarks top.](images/ttbarfusion.png)
+![Imagen 4: Producción del bosón de Higgs (H) a partir de la fusión del quark top, donde dos quarks top (t), representados por líneas rectas con flechas, interactúan y se fusionan para producir el bosón de Higgs, representado como una línea de puntos.](images/ttbarfusion.png)
 
 ## Cómo se desintegra el bosón de Higgs 
 
@@ -33,7 +33,7 @@ Una vez producido, el bosón de Higgs se desintegra casi inmediatamente. La form
 
 - **Higgs a dos bosones Z (H→ZZ)**: El bosón de Higgs se desintegra en un par de bosones Z, cada uno de los cuales puede desintegrarse aún más en pares de leptones, como electrones o muones. Esta cadena de desintegración permite la reconstrucción de la presencia del bosón de Higgs observando el estado final de cuatro leptones. ¡Esto es lo que estamos haciendo en el taller!
 
-![Imagen 5: Decaimiento del bosón de Higgs en dos bosones Z.](images/HZZ_feynman.png)
+![Imagen 5: Decaimiento del bosón de Higgs (H) en dos bosones Z (Z), donde el bosón de Higgs se representa como una línea de puntos que se divide en dos ramas representadas por líneas onduladas correspondientes a los bosones Z, que se dividen a su vez en leptones (l).](images/HZZ_feynman.png)
 
 - **Higgs a dos bosones W (H→WW)**: En este modo de desintegración, el bosón de Higgs se desintegra en un par de bosones W, que a su vez se desintegran en leptones y neutrinos.
 

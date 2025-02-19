@@ -3,7 +3,7 @@ We’ll start with something that might sound familiar: the atom. Picture it ini
 
 ![Image 1: Illustration of an atom, showing its components. The nucleus consists of protons and neutrons, while electrons orbit around this central structure.](images/atom-structure-diagram.png)
 
-Unlike planets, electrons don't orbit in fixed paths. Instead, they exist in “clouds” or regions where we are likely to find them, a concept shaped by [quantum mechanics](https://en.wikipedia.org/wiki/Quantum_mechanics). This gives atoms a structure that’s quite different from the classic solar system model.
+Unlike planets, electrons don't orbit in fixed paths. Instead, they exist in “clouds” or regions where we are likely to find them, a concept shaped by [quantum mechanics](https://en.wikipedia.org/wiki/Introduction_to_quantum_mechanics). This gives atoms a structure that’s quite different from the classic solar system model.
 
 Within this tiny structure, different forces hold everything together. For example:
 
@@ -12,7 +12,7 @@ Within this tiny structure, different forces hold everything together. For examp
 
 As fundamental as atoms may seem, they’re actually made up of even smaller particles. Protons and neutrons consist of quarks, bound together by particles called gluons, which act as “force carriers” for the strong nuclear force. 
 
-![Imagen 2: Estructura interna de los protones y neutrones. Los protones están formados por dos quarks up y un quark down, mientras que los neutrones están formados por dos quarks down y un quark up.](images/proton_neutron_comp.png)
+![Image 2: Internal structure of protons and neutrons. Protons are made up of two up quarks and one down quark, while neutrons are made up of two down quarks and one up quark.](images/proton_neutron_comp.png)
     
 Electrons, however, as well as quarks and gluons, are part of a group called **fundamental particles**, meaning they aren’t made of anything smaller.
 

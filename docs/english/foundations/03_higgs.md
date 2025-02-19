@@ -11,19 +11,19 @@ At the LHC, Higgs bosons are produced in various ways, known as **production mod
 
 - **Gluon Fusion**: The most common production mode at the LHC, where two gluons (from protons in the collider) interact to produce a Higgs boson via a loop of heavy quarks, often the top quark (image 1). This process is highly probable because of the strong interaction between gluons and quarks.
 
-![Image 1: Production of the Higgs boson from gluon fusion.](images/ggH.png)
+![Image 1: Production of the Higgs boson (H) via gluon (g) fusion, where two gluons—depicted as curly or coil lines—interact through a loop containing the top quark (t) and its antiparticle (t̄), both shown as straight lines with arrows, to produce the Higgs boson, represented by a dotted line.](images/ggH.png)
 
 - **Vector Boson Fusion (VBF)**: In this mode, two quarks each emit a W or Z boson, which interact to produce a Higgs boson (image 2). The quarks themselves are often scattered at high angles, leaving a distinctive signature of two “jets” in the detector.
 
-![Image 2: Production of the Higgs boson from vector boson fusion.](images/VBFH.png)
+![Image 2: Production of the Higgs boson (H) via vector boson fusion, where quarks (q) represented by straight lines with arrows emit vector bosons (W, Z) shown as wavy lines that fuse to form the Higgs boson, depicted as a dotted line.](images/VBFH.png)
 
 - **Associated Production (or Higgs-Strahlung)**: Here, a Higgs boson is produced along with either a W or Z boson (image 3).
 
-![Image 3: Production of the Higgs boson from associated production.](images/WH.png)
+![Image 3: Production of the Higgs boson (H) via associated production, where a quark (q), shown as a straight line with an arrow, emits a vector boson (W or Z) represented by a wavy line, resulting in the simultaneous production of the Higgs boson, depicted as a dotted line.](images/WH.png)
 
 - **Top-Quark Fusion**: A rarer mode where a Higgs boson is produced in association with a top quark pair (image 4). This process helps study the interaction between the Higgs and the heaviest known particle, the top quark.
 
-![Image 4: Production of the Higgs boson from top quark fusion.](images/ttbarfusion.png)
+![Image 4: Production of the Higgs boson (H) from top quark fusion, where two top quarks (t), represented by straight lines with arrows, interact and fuse to produce the Higgs boson, depicted as a dotted line.](images/ttbarfusion.png)
 
 ## How the Higgs Boson Decays
 Once produced, the Higgs boson decays almost immediately. The specific way it decays—called the decay channel—depends on its mass and interaction probabilities with other particles:
@@ -32,7 +32,7 @@ Once produced, the Higgs boson decays almost immediately. The specific way it de
 
 - **Higgs to two Z bosons (H→ZZ)**: The Higgs boson decays into a pair of Z bosons, each of which can decay further into pairs of leptons, such as electrons or muons. This decay chain allows the reconstruction of the Higgs boson’s presence by observing the four-lepton final state. This is what we are doing in the workshop!
 
-![Image 5: Decay of the Higgs boson into two Z bosons.](images/HZZ_feynman.png)
+![Image 5: Decay of the Higgs boson (H) into two Z bosons (Z), where the Higgs boson is depicted as a dotted line that splits into two branches represented by wavy lines corresponding to the Z bosons, that split further into leptons (l).](images/HZZ_feynman.png)
 
 - **Higgs to two W bosons (H→WW)**: In this decay mode, the Higgs boson decays into a pair of W bosons, which further decay into leptons and neutrinos.
 

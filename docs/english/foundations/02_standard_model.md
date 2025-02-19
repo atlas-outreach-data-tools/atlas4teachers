@@ -1,5 +1,5 @@
 # The Standard Model
-The Standard Model is a theory that organizes and describes the fundamental particles that make up everything in the universe and the forces that act between them. Think of it as the “[periodic table](https://en.wikipedia.org/wiki/Periodic_table)” for particle physics. It divides particles into two main categories: fermions and bosons.
+The Standard Model is a theory that organizes and describes the fundamental particles that make up everything in the universe and the forces that act between them. Think of it as the “periodic table” for particle physics. It divides particles into two main categories: fermions and bosons.
 
 ![Image 1: Particles of the standard model.](images/SM.png)
 

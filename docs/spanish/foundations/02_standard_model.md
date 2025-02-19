@@ -1,6 +1,6 @@
 # El Modelo Estándar
 
-El Modelo Estándar es una teoría que organiza y describe las partículas fundamentales que componen todo lo que hay en el universo y las fuerzas que actúan entre ellas. Puedes pensarlo como la “[tabla periódica](https://es.wikipedia.org/wiki/Tabla_periódica_de_los_elementos)” de la física de partículas. La teoría divide las partículas en dos categorías principales: fermiones y bosones.
+El Modelo Estándar es una teoría que organiza y describe las partículas fundamentales que componen todo lo que hay en el universo y las fuerzas que actúan entre ellas. Puedes pensarlo como la “tabla periódica” de la física de partículas. La teoría divide las partículas en dos categorías principales: fermiones y bosones.
 
 ![Imagen 1: Partículas del modelo estándar.](images/SM.png)
 
