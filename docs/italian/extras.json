@@ -1,0 +1,21 @@
+{
+    "side_bar_title": "ATLAS Open Data in Classe",
+    "side_bar":[
+      "Iniziamo",
+      "Fondamenti di Fisica delle Particelle",
+      "Fisica delle Particelle Sperimentale",
+      "Analizziamo ATLAS Open Data",
+      "Introduzione a Python",
+      "Kit di sopravvivenza Python"
+    ],
+    "start_done": [
+        "Iniziamo!",
+        "Fine"
+    ],
+    "tutorial": {
+      "already_done": "Hai già completato il tutorial? Vai alla parte di analisi dati!",
+      "finish": "Finisci il Tutorial",
+      "back": "Ritorna al Tutorial"
+    }
+
+}

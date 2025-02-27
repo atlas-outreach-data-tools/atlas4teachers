@@ -1,0 +1,4 @@
+# Tutorial: Comprendere la Selezione degli Eventi
+L'analisi dei dati è il fondamento della ricerca fisica. Negli esperimenti condotti presso il rivelatore ATLAS al CERN, analizziamo grandi quantità di dati per cercare prove dell'esistenza di particelle. Questo processo comporta l'isolamento di collisioni o eventi significativi, un passaggio essenziale per fare scoperte scientifiche.
+
+Questo tutorial introduce il concetto di **selezione degli eventi**, o tagli, nell'analisi dei dati. Imparerai come e perché applicare regole di selezione degli eventi, che sono filtri che affinano il dataset per concentrarsi sugli eventi di interesse. Utilizzando un dataset estratto da dati sperimentali reali, esplorerai un processo per analizzare i dati e scoprire modelli. Alla fine, avrai una comprensione più chiara di come vengono applicati i tagli, da utilizzare successivamente per rivelare la fisica nascosta all'interno di un dataset più ampio.

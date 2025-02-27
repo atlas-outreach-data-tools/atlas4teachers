@@ -1,0 +1,21 @@
+{
+    "intro": {
+        "title": "How do we know we found the Higgs?",
+        "docs": "To determine if we've observed the Higgs boson, we compare our real data with simulations of known background processes and simulated signals. This approach helps us see if a peak stands out in our data where we expect the Higgs boson to appear."
+    },
+    "data_only": {
+        "title": "Step 1: Observing the Data",
+        "docs": "Let's start by looking at the data alone. Look carefully: do you notice any specific features? Without additional information, it can be challenging to tell whether any peaks are due to background processes or signal events.",
+        "caption": "Observed data alone"
+    },
+    "data_bkg": {
+        "title": "Step 2: Adding Background Simulation",
+        "docs": "Now, we add a simulation of the background processes (without any signal). This shows us what we’d expect to see from other particles and interactions in the absence of the Higgs boson, like the Z peak at 91 GeV that we obtained previously. Look closely: do any peaks in the data appear in addition to the background?",
+        "caption": "Data with background simulation"
+    },
+    "data_bkg_sig": {
+        "title": "Step 3: Adding the Simulated Higgs Signal",
+        "docs": "Finally, we add the simulation of the Higgs signal to see how well it matches with the data. If the data aligns with the background plus the Higgs signal simulation, we have strong evidence of the Higgs boson. Can you spot a clear peak where we expect the Higgs?",
+        "caption": "Data with background and simulated Higgs signal"
+    }
+}

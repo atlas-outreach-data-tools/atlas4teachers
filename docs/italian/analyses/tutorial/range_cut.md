@@ -1,0 +1,8 @@
+## Selezione di Intervallo: Selezionare Eventi per Energia del Leptone Principale
+Nella fisica delle particelle, l'energia del **leptone principale** — il leptone con l'energia più alta in un evento — è una proprietà importante. Fornisce informazioni sulle interazioni e i decadimenti che avvengono negli eventi analizzati. I leptoni principali con energia più alta possono indicare la presenza di particelle più pesanti, come il bosone di Higgs, e il loro comportamento aiuta a identificare la natura dell'evento. Selezionando eventi basati sull'energia del leptone principale, possiamo ridurre il rumore di fondo e concentrarci su segnali significativi.
+
+In questo passaggio, applicherai una selezione di intervallo per filtrare il dataset in base all'energia del leptone principale. Questo comporta la selezione di un valore minimo e massimo di energia (misurata in giga-elettronvolt, o GeV) per isolare eventi in cui l'energia del leptone principale ricade in questo intervallo.
+
+Usa il cursore qui sotto per specificare l'intervallo di energia. Per esempio: Un intervallo tra 20 e 150 GeV conserva eventi in cui l'energia del leptone principale è superiore a 20 GeV e inferiore a 150 GeV.
+
+Il dataset si aggiornerà dinamicamente man mano che regoli l'intervallo, fornendo una visione chiara di come questo filtro affina il dataset. Per verificare la selezione di intervallo, ispeziona la colonna `LeadingLeptonEnergy` nel dataset per assicurarti che tutti i valori siano all'interno dell'intervallo selezionato.

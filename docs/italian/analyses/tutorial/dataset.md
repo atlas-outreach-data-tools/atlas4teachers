@@ -1,0 +1,4 @@
+### Quale Dataset Stiamo Utilizzando?
+Per questo esempio, stiamo usando un dataset derivato dai dati sperimentali raccolti al rivelatore ATLAS al CERN. Rappresenta un sottoinsieme di 500 eventi dai dati che utilizzeremo per l'analisi, con ogni evento o riga corrispondente a una collisione registrata durante l'esperimento. Ogni riga nel dataset fornisce proprietà di un evento, come il numero di particelle rilevate e l'energia del leptone principale (il leptone con il momento più elevato nell'evento).
+
+Di seguito è riportato il dataset. Ogni riga rappresenta un evento e le colonne forniscono informazioni sulle sue proprietà. Applicheremo selezioni per affinare questo dataset e concentrarci sugli eventi di interesse.
