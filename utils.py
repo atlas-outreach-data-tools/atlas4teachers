@@ -192,7 +192,10 @@ def load_markdown_file_combined(filename, folder, language, global_namespace=Non
                 in_code_block = False
                 code = '\n'.join(code_buffer)
                 if global_namespace is not None:
-                    run_code_editor(code, global_namespace, key=f"{filename}_line_{line_number}")
+                    run_code_editor(code,
+                                    global_namespace,
+                                    key=f"{folder}::{filename}::line_{line_number}"
+                                )
                 code_buffer = []
             continue  # Skip further processing for this line
 
