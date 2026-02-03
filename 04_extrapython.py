@@ -85,4 +85,4 @@ def run(selected_language):
     </style>
     '''
 
-    st.markdown(css, unsafe_allow_html=False)
+    st.markdown(css, unsafe_allow_html=True)
