@@ -123,4 +123,7 @@ def run(selected_language):
     </style>
     '''
 
-    st.markdown(css, unsafe_allow_html=True)
+    css_key = f"{selected_language.lower()}::foundations::tabs_css_loaded"
+    if css_key not in st.session_state:
+        st.markdown(css, unsafe_allow_html=False)
+        st.session_state[css_key] = True

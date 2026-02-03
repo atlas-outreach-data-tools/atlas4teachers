@@ -106,4 +106,4 @@ def run(selected_language):
     </style>
     '''
 
-    st.markdown(css, unsafe_allow_html=True)
+    st.markdown(css, unsafe_allow_html=False)
