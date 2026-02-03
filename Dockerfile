@@ -2,6 +2,13 @@ FROM python:3.12-slim
 
 WORKDIR /app
 
+# Make Streamlit write configs to a writable path in OKD/OpenShift
+ENV HOME=/tmp
+ENV STREAMLIT_CONFIG_DIR=/tmp/.streamlit
+
+# Create the config dir with permissive permissions (works with random UID)
+RUN mkdir -p /tmp/.streamlit && chmod -R 777 /tmp/.streamlit
+
 # Copy content of the git repo in the image
 COPY . /app
 
