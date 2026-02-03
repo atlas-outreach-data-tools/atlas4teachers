@@ -15,12 +15,12 @@ def run(selected_language):
         extras = json.load(json_file)
 
     # Initialize session state for expanded state of sections
-    if "expanded_accelerators" not in st.session_state:
-        st.session_state["expanded_accelerators"] = False
-    if "expanded_detectors" not in st.session_state:
-        st.session_state["expanded_detectors"] = False
-    if "expanded_atlas" not in st.session_state:
-        st.session_state["expanded_atlas"] = False
+    if "expanded_accelerators_02" not in st.session_state:
+        st.session_state["expanded_accelerators_02"] = False
+    if "expanded_detectors_02" not in st.session_state:
+        st.session_state["expanded_detectors_02"] = False
+    if "expanded_atlas_02" not in st.session_state:
+        st.session_state["expanded_atlas_02"] = False
 
     # The intro to the module
     general_info = '00_intro.md'
@@ -41,20 +41,20 @@ def run(selected_language):
         # Load preview for accelerators
         accelerators_preview = load_markdown_preview(tabs_path[0], folder, selected_language, lines=3)
 
-        if not st.session_state["expanded_accelerators"]:
+        if not st.session_state["expanded_accelerators_02"]:
             # Show preview
             preview_lines = accelerators_preview.splitlines()
             st.markdown(f"#{preview_lines[0]}")  # First line as title with larger font
             st.write("\n".join(preview_lines[1:]))  # Remaining lines as preview text
-            if st.button(start, key="accelerators_read"):
-                st.session_state["expanded_accelerators"] = True
+            if st.button(start, key="accelerators_read_02"):
+                st.session_state["expanded_accelerators_02"] = True
                 st.rerun()  # Refresh the app to display the full content
         else:
             # Show full content and video
             load_markdown_file_combined(tabs_path[0], folder, selected_language)
             st.video("https://www.youtube.com/embed/pQhbhpU9Wrg")
-            if st.button(done, key="accelerators_done"):
-                st.session_state["expanded_accelerators"] = False
+            if st.button(done, key="accelerators_done_02"):
+                st.session_state["expanded_accelerators_02"] = False
                 st.rerun()  # Refresh the app to show the preview again
 
     # Tab 2: Detectors
@@ -62,19 +62,19 @@ def run(selected_language):
         # Load preview for detectors
         detectors_preview = load_markdown_preview(tabs_path[1], folder, selected_language, lines=3)
 
-        if not st.session_state["expanded_detectors"]:
+        if not st.session_state["expanded_detectors_02"]:
             # Show preview
             preview_lines = detectors_preview.splitlines()
             st.markdown(f"#{preview_lines[0]}")  # First line as title with larger font
             st.write("\n".join(preview_lines[1:]))  # Remaining lines as preview text
-            if st.button(start, key="detectors_read"):
-                st.session_state["expanded_detectors"] = True
+            if st.button(start, key="detectors_read_02"):
+                st.session_state["expanded_detectors_02"] = True
                 st.rerun()  # Refresh the app to display the full content
         else:
             # Show full content
             load_markdown_file_combined(tabs_path[1], folder, selected_language)
-            if st.button(done, key="detectors_done"):
-                st.session_state["expanded_detectors"] = False
+            if st.button(done, key="detectors_done_02"):
+                st.session_state["expanded_detectors_02"] = False
                 st.rerun()  # Refresh the app to show the preview again
 
     # Tab 3: ATLAS
@@ -82,19 +82,19 @@ def run(selected_language):
         # Load preview for detectors
         atlas_preview = load_markdown_preview(tabs_path[2], folder, selected_language, lines=3)
 
-        if not st.session_state["expanded_atlas"]:
+        if not st.session_state["expanded_atlas_02"]:
             # Show preview
             preview_lines = atlas_preview.splitlines()
             st.markdown(f"#{preview_lines[0]}")  # First line as title with larger font
             st.write("\n".join(preview_lines[1:]))  # Remaining lines as preview text
-            if st.button(start, key="atlas_read"):
-                st.session_state["expanded_atlas"] = True
+            if st.button(start, key="atlas_read_02"):
+                st.session_state["expanded_atlas_02"] = True
                 st.rerun()  # Refresh the app to display the full content
         else:
             # Show full content
             load_markdown_file_combined(tabs_path[2], folder, selected_language)
-            if st.button(done, key="atlas_done"):
-                st.session_state["expanded_atlas"] = False
+            if st.button(done, key="atlas_done_02"):
+                st.session_state["expanded_atlas_02"] = False
                 st.rerun()  # Refresh the app to show the preview again
     
     # Making the tabs font bigger

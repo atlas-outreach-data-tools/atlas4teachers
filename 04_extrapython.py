@@ -19,10 +19,10 @@ def run(selected_language):
         extras = json.load(json_file)
 
     # Initialize session state for expanded state of sections
-    if "expanded_intro" not in st.session_state:
-        st.session_state["expanded_intro"] = False
-    if "expanded_histograms" not in st.session_state:
-        st.session_state["expanded_histograms"] = False
+    if "expanded_intro_04" not in st.session_state:
+        st.session_state["expanded_intro_04"] = False
+    if "expanded_histograms_04" not in st.session_state:
+        st.session_state["expanded_histograms_04"] = False
 
     # Create paths and titles for each section
     general_info = '00_before_class.md'
@@ -41,19 +41,19 @@ def run(selected_language):
         # Load preview for intro
         intro_preview = load_markdown_preview(tabs_path[0], folder, selected_language, lines=3)
 
-        if not st.session_state["expanded_intro"]:
+        if not st.session_state["expanded_intro_04"]:
             # Show preview
             preview_lines = intro_preview.splitlines()
             st.markdown(f"#{preview_lines[0]}")  # First line as title with larger font
             st.write("\n".join(preview_lines[1:]))  # Remaining lines as preview text
-            if st.button(start, key="intro_read"):
-                st.session_state["expanded_intro"] = True
+            if st.button(start, key="intro_read_04"):
+                st.session_state["expanded_intro_04"] = True
                 st.rerun()  # Refresh the app to display the full content
         else:
             # Show full content
             load_markdown_file_combined(tabs_path[0], folder, selected_language, global_namespace)
-            if st.button(done, key="intro_done"):
-                st.session_state["expanded_intro"] = False
+            if st.button(done, key="intro_done_04"):
+                st.session_state["expanded_intro_04"] = False
                 st.rerun()  # Refresh the app to show the preview again
 
     # Tab 2: Histograms
@@ -61,19 +61,19 @@ def run(selected_language):
         # Load preview for histograms
         histograms_preview = load_markdown_preview(tabs_path[1], folder, selected_language, lines=3)
 
-        if not st.session_state["expanded_histograms"]:
+        if not st.session_state["expanded_histograms_04"]:
             # Show preview
             preview_lines = histograms_preview.splitlines()
             st.markdown(f"#{preview_lines[0]}")  # First line as title with larger font
             st.write("\n".join(preview_lines[1:]))  # Remaining lines as preview text
-            if st.button(start, key="histograms_read"):
-                st.session_state["expanded_histograms"] = True
+            if st.button(start, key="histograms_read_04"):
+                st.session_state["expanded_histograms_04"] = True
                 st.rerun()  # Refresh the app to display the full content
         else:
             # Show full content
             load_markdown_file_combined(tabs_path[1], folder, selected_language, global_namespace)
-            if st.button(done, key="histograms_done"):
-                st.session_state["expanded_histograms"] = False
+            if st.button(done, key="histograms_done_04"):
+                st.session_state["expanded_histograms_04"] = False
                 st.rerun()  # Refresh the app to show the preview again
 
     # Making the tabs font bigger

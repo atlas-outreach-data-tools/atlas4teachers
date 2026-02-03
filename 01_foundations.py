@@ -15,14 +15,14 @@ def run(selected_language):
         extras = json.load(json_file)
 
     # Initialize session state for expanded state of sections
-    if "expanded_intro" not in st.session_state:
-        st.session_state["expanded_intro"] = False
-    if "expanded_standard_model" not in st.session_state:
-        st.session_state["expanded_standard_model"] = False
-    if "expanded_higgs" not in st.session_state:
-        st.session_state["expanded_higgs"] = False
-    if "expanded_unknown" not in st.session_state:
-        st.session_state["expanded_unknown"] = False
+    if "expanded_intro_01" not in st.session_state:
+        st.session_state["expanded_intro_01"] = False
+    if "expanded_sm_01" not in st.session_state:
+        st.session_state["expanded_sm_01"] = False
+    if "expanded_higgs_01" not in st.session_state:
+        st.session_state["expanded_higgs_01"] = False
+    if "expanded_unknown_01" not in st.session_state:
+        st.session_state["expanded_unknown_01"] = False
 
     # Get the intro to the module
     general_info = '00_intro.md'
@@ -44,74 +44,74 @@ def run(selected_language):
         # Load preview
         intro_preview = load_markdown_preview(tabs_path[0], folder, selected_language, lines=3)
 
-        if not st.session_state["expanded_intro"]:
+        if not st.session_state["expanded_intro_01"]:
             # Show preview
             preview_lines = intro_preview.splitlines()
             st.markdown(f"#{preview_lines[0]}")  # First line as title with larger font
             st.write("\n".join(preview_lines[1:]))  # Remaining lines as preview text
-            if st.button(start, key="intro_read", type='primary'):
-                st.session_state["expanded_intro"] = True
+            if st.button(start, key="intro_read_01", type='primary'):
+                st.session_state["expanded_intro_01"] = True
                 st.rerun()  # Refresh the app to display the full content
         else:
             # Show full content
             load_markdown_file_combined(tabs_path[0], folder, selected_language)
-            if st.button(done, key="intro_done", type='primary'):
-                st.session_state["expanded_intro"] = False
+            if st.button(done, key="intro_done_01", type='primary'):
+                st.session_state["expanded_intro_01"] = False
                 st.rerun()  # Refresh the app to show the preview again
 
     # Tab 2: The standard model
     with tabs[1]:
         standard_model_preview = load_markdown_preview(tabs_path[1], folder, selected_language, lines=3)
-        if not st.session_state["expanded_standard_model"]:
+        if not st.session_state["expanded_sm_01"]:
             # Show preview
             preview_lines = standard_model_preview.splitlines()
             st.markdown(f"#{preview_lines[0]}")  # First line as title with larger font
             st.write("\n".join(preview_lines[1:]))  # Remaining lines as preview text
-            if st.button(start, key="standard_model_read", type='primary'):
-                st.session_state["expanded_standard_model"] = True
+            if st.button(start, key="standard_model_read_01", type='primary'):
+                st.session_state["expanded_sm_01"] = True
                 st.rerun()  # Refresh the app to display the full content
         else:
             # Show full content
             load_markdown_file_combined(tabs_path[1], folder, selected_language)
-            if st.button(done, key="standard_model_done", type='primary'):
-                st.session_state["expanded_standard_model"] = False
+            if st.button(done, key="standard_model_done_01", type='primary'):
+                st.session_state["expanded_sm_01"] = False
                 st.rerun()  # Refresh the app to show the preview again
 
     # Tab 3: The Higgs boson
     with tabs[2]:
         higgs_preview = load_markdown_preview(tabs_path[2], folder, selected_language, lines=3)
-        if not st.session_state["expanded_higgs"]:
+        if not st.session_state["expanded_higgs_01"]:
             # Show preview
             preview_lines = higgs_preview.splitlines()
             st.markdown(f"#{preview_lines[0]}")  # First line as title with larger font
             st.write("\n".join(preview_lines[1:]))  # Remaining lines as preview text
-            if st.button(start, key="higgs_read", type='primary'):
-                st.session_state["expanded_higgs"] = True
+            if st.button(start, key="higgs_read_01", type='primary'):
+                st.session_state["expanded_higgs_01"] = True
                 st.rerun()  # Refresh the app to display the full content
         else:
             # Show full content
             load_markdown_file_combined(tabs_path[2], folder, selected_language)
-            if st.button(done, key="higgs_done", type='primary'):
-                st.session_state["expanded_higgs"] = False
+            if st.button(done, key="higgs_done_01", type='primary'):
+                st.session_state["expanded_higgs_01"] = False
                 st.rerun()  # Refresh the app to show the preview again
 
 
     # Tab 4: The Unknown
     with tabs[3]:
         uknown_preview = load_markdown_preview(tabs_path[3], folder, selected_language, lines=3)
-        if not st.session_state["expanded_unknown"]:
+        if not st.session_state["expanded_unknown_01"]:
             # Show preview
             preview_lines = uknown_preview.splitlines()
             st.markdown(f"#{preview_lines[0]}")  # First line as title with larger font
             st.write("\n".join(preview_lines[1:]))  # Remaining lines as preview text
-            if st.button(start, key="unknown_read", type='primary'):
-                st.session_state["expanded_unknown"] = True
+            if st.button(start, key="unknown_read_01", type='primary'):
+                st.session_state["expanded_unknown_01"] = True
                 st.rerun()  # Refresh the app to display the full content
         else:
             # Show full content
             load_markdown_file_combined(tabs_path[3], folder, selected_language)
-            if st.button(done, key="unknown_done", type='primary'):
-                st.session_state["expanded_unknown"] = False
+            if st.button(done, key="unknown_done_01", type='primary'):
+                st.session_state["expanded_unknown_01"] = False
                 st.rerun()  # Refresh the app to show the preview again
 
     # Making the tabs font bigger

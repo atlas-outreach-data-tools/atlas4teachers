@@ -15,12 +15,12 @@ def run(selected_language):
         extras = json.load(json_file)
 
     # Initialize session state for expanded state of sections
-    if "expanded_glossary" not in st.session_state:
-        st.session_state["expanded_glossary"] = False
-    if "expanded_printables" not in st.session_state:
-        st.session_state["expanded_printables"] = False
-    if "expanded_videos" not in st.session_state:
-        st.session_state["expanded_videos"] = False
+    if "expanded_glossary_05" not in st.session_state:
+        st.session_state["expanded_glossary_05"] = False
+    if "expanded_printables_05" not in st.session_state:
+        st.session_state["expanded_printables_05"] = False
+    if "expanded_videos_05" not in st.session_state:
+        st.session_state["expanded_videos_05"] = False
 
     # The intro to the module
     general_info = '00_intro.md'
@@ -41,19 +41,19 @@ def run(selected_language):
         # Load preview for printables
         printables_preview = load_markdown_preview(tabs_path[0], folder, selected_language, lines=3)
 
-        if not st.session_state["expanded_printables"]:
+        if not st.session_state["expanded_printables_05"]:
             # Show preview
             preview_lines = printables_preview.splitlines()
             st.markdown(f"#{preview_lines[0]}")  # First line as title with larger font
             st.write("\n".join(preview_lines[1:]))  # Remaining lines as preview text
-            if st.button(start, key="printables_read"):
-                st.session_state["expanded_printables"] = True
+            if st.button(start, key="printables_read_05"):
+                st.session_state["expanded_printables_05"] = True
                 st.rerun()  # Refresh the app to display the full content
         else:
             # Show full content and video
             load_markdown_file_combined(tabs_path[0], folder,selected_language, global_namespace={}) 
-            if st.button(done, key="printables_done"):
-                st.session_state["expanded_printables"] = False
+            if st.button(done, key="printables_done_05"):
+                st.session_state["expanded_printables_05"] = False
                 st.rerun()  # Refresh the app to show the preview again
 
     # Tab 2: videos
@@ -61,19 +61,19 @@ def run(selected_language):
         # Load preview for videos
         videos_preview = load_markdown_preview(tabs_path[1], folder, selected_language, lines=3)
 
-        if not st.session_state["expanded_videos"]:
+        if not st.session_state["expanded_videos_05"]:
             # Show preview
             preview_lines = videos_preview.splitlines()
             st.markdown(f"#{preview_lines[0]}")  # First line as title with larger font
             st.write("\n".join(preview_lines[1:]))  # Remaining lines as preview text
-            if st.button(start, key="videos_read"):
-                st.session_state["expanded_videos"] = True
+            if st.button(start, key="videos_read_05"):
+                st.session_state["expanded_videos_05"] = True
                 st.rerun()  # Refresh the app to display the full content
         else:
             # Show full content
             load_markdown_file_combined(tabs_path[1], folder, selected_language, global_namespace={})
-            if st.button(done, key="videos_done"):
-                st.session_state["expanded_videos"] = False
+            if st.button(done, key="videos_done_05"):
+                st.session_state["expanded_videos_05"] = False
                 st.rerun()  # Refresh the app to show the preview again
 
     # Tab 3: glossary
@@ -81,19 +81,19 @@ def run(selected_language):
         # Load preview for glossary
         glossary_preview = load_markdown_preview(tabs_path[2], folder, selected_language, lines=3)
 
-        if not st.session_state["expanded_glossary"]:
+        if not st.session_state["expanded_glossary_05"]:
             # Show preview
             preview_lines = glossary_preview.splitlines()
             st.markdown(f"#{preview_lines[0]}")  # First line as title with larger font
             st.write("\n".join(preview_lines[1:]))  # Remaining lines as preview text
-            if st.button(start, key="glossary_read"):
-                st.session_state["expanded_glossary"] = True
+            if st.button(start, key="glossary_read_05"):
+                st.session_state["expanded_glossary_05"] = True
                 st.rerun()  # Refresh the app to display the full content
         else:
             # Show full content
             load_markdown_file_combined(tabs_path[2], folder, selected_language)
-            if st.button(done, key="glossary_done"):
-                st.session_state["expanded_glossary"] = False
+            if st.button(done, key="glossary_done_05"):
+                st.session_state["expanded_glossary_05"] = False
                 st.rerun()  # Refresh the app to show the preview again
 
     # Making the tabs font bigger
